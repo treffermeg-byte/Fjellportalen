@@ -133,12 +133,12 @@ export default function App() {
 
         <div className="grid md:grid-cols-2 gap-6 mb-6">
           <ForecastCard
-            title="📍 Beitostølen - 7 dagers prognose"
+            title="📍 Beitostølen - 4 dagers prognose"
             forecast={beitoForecast}
           />
 
           <ForecastCard
-            title="📍 Loen - 7 dagers prognose"
+            title="📍 Loen - 4 dagers prognose"
             forecast={loenForecast}
           />
         </div>
