@@ -11,11 +11,15 @@ export default function App() {
   const beitoWeather = {
     temp: -2,
     wind: 4,
+    sunrise: "07:28",
+    sunset: "18:43",
   };
 
   const loenWeather = {
     temp: 5,
     wind: 2,
+    sunrise: "07:32",
+    sunset: "18:51",
   };
 
   const beitoForecast = [
@@ -91,7 +95,6 @@ export default function App() {
   return (
     <div className="min-h-screen bg-slate-100">
       <div className="max-w-7xl mx-auto p-6">
-
         <h1 className="text-5xl font-bold mb-2">
           🏔️ Fjellportalen
         </h1>
@@ -105,17 +108,25 @@ export default function App() {
           <HytteklarCard />
         </div>
 
+        <div className="mb-6">
+          <DrivstoffLadingCard />
+        </div>
+
         <div className="grid md:grid-cols-2 gap-6 mb-6">
           <WeatherCard
             title="🏔️ Beitostølen"
             temp={beitoWeather.temp}
             wind={beitoWeather.wind}
+            sunrise={beitoWeather.sunrise}
+            sunset={beitoWeather.sunset}
           />
 
           <WeatherCard
             title="🏞️ Loen"
             temp={loenWeather.temp}
             wind={loenWeather.wind}
+            sunrise={loenWeather.sunrise}
+            sunset={loenWeather.sunset}
           />
         </div>
 
@@ -132,11 +143,11 @@ export default function App() {
         </div>
 
         <div className="mb-6">
-          <TravelTimesCard />
+          <HeisStatusCard />
         </div>
 
         <div className="mb-6">
-          <DrivstoffLadingCard />
+          <TravelTimesCard />
         </div>
 
         <div className="mb-6">
@@ -144,13 +155,8 @@ export default function App() {
         </div>
 
         <div className="mb-6">
-          <HeisStatusCard />
-        </div>
-
-        <div className="mb-6">
           <CameraSection />
         </div>
-
       </div>
     </div>
   );
