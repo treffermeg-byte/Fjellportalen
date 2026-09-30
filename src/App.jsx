@@ -6,6 +6,7 @@ import HeisStatusCard from "./components/HeisStatusCard";
 import CameraSection from "./components/CameraSection";
 import HytteklarCard from "./components/HytteklarCard";
 import DrivstoffLadingCard from "./components/DrivstoffLadingCard";
+import LangrennCard from "./components/LangrennCard";
 
 export default function App() {
   const beitoWeather = {
@@ -147,6 +148,10 @@ export default function App() {
         </div>
 
         <div className="mb-6">
+          <LangrennCard />
+        </div>
+
+        <div className="mb-6">
           <TravelTimesCard />
         </div>
 
@@ -161,3 +166,4 @@ export default function App() {
     </div>
   );
 }
+``
