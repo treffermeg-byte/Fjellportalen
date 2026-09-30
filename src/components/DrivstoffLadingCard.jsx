@@ -5,33 +5,32 @@ export default function DrivstoffLadingCard() {
         ⛽ Drivstoff & Lading
       </h2>
 
-      <div className="grid md:grid-cols-2 gap-4">
+      <div className="space-y-3">
         <a
           href="https://maps.google.com/?q=Circle+K+Fagernes"
           target="_blank"
           rel="noopener noreferrer"
-          className="border rounded-xl p-4 hover:bg-slate-50 block"
+          className="block border rounded-xl p-4 hover:bg-slate-50"
         >
-          <div className="font-semibold">
-            ⛽ Circle K Fagernes
-          </div>
-          <div className="text-slate-500 text-sm">
-            Drivstoff og hurtiglading
-          </div>
+          ⛽ Circle K Fagernes
         </a>
 
         <a
           href="https://maps.google.com/?q=Circle+K+Lom"
           target="_blank"
           rel="noopener noreferrer"
-          className="border rounded-xl p-4 hover:bg-slate-50 block"
+          className="block border rounded-xl p-4 hover:bg-slate-50"
         >
-          <div className="font-semibold">
-            ⛽ Circle K Lom
-          </div>
-          <div className="text-slate-500 text-sm">
-            Drivstoff og pause
-          </div>
+          ⛽ Circle K Lom
+        </a>
+
+        <a
+          href="https://maps.google.com/?q=Shell+Stryn"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="block border rounded-xl p-4 hover:bg-slate-50"
+        >
+          ⛽ Shell Stryn
         </a>
       </div>
     </div>
