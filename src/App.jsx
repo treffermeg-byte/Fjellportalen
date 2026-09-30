@@ -5,6 +5,7 @@ import FjellovergangerCard from "./components/FjellovergangerCard";
 import HeisStatusCard from "./components/HeisStatusCard";
 import CameraSection from "./components/CameraSection";
 import HytteklarCard from "./components/HytteklarCard";
+import DrivstoffLadingCard from "./components/DrivstoffLadingCard";
 
 export default function App() {
   const beitoWeather = {
@@ -96,55 +97,4 @@ export default function App() {
 
         <p className="text-slate-600 mb-6">
           Vær, snøforhold, kjøretider, fjelloverganger,
-          heisstatus og kameraer samlet på ett sted.
-        </p>
-
-        <div className="mb-6">
-          <HytteklarCard />
-        </div>
-
-        <div className="grid md:grid-cols-2 gap-6 mb-6">
-          <WeatherCard
-            title="🏔️ Beitostølen"
-            temp={beitoWeather.temp}
-            wind={beitoWeather.wind}
-          />
-
-          <WeatherCard
-            title="🏞️ Loen"
-            temp={loenWeather.temp}
-            wind={loenWeather.wind}
-          />
-        </div>
-
-        <div className="grid md:grid-cols-2 gap-6 mb-6">
-          <ForecastCard
-            title="📍 Beitostølen - 7 dagers prognose"
-            forecast={beitoForecast}
-          />
-
-          <ForecastCard
-            title="📍 Loen - 7 dagers prognose"
-            forecast={loenForecast}
-          />
-        </div>
-
-        <div className="mb-6">
-          <TravelTimesCard />
-        </div>
-
-        <div className="mb-6">
-          <FjellovergangerCard />
-        </div>
-
-        <div className="mb-6">
-          <HeisStatusCard />
-        </div>
-
-        <div className="mb-6">
-          <CameraSection />
-        </div>
-      </div>
-    </div>
-  );
-}
+          he
