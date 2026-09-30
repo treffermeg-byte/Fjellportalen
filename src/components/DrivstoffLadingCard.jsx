@@ -45,7 +45,7 @@ export default function DrivstoffLadingCard() {
             href={station.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="border rounded-xl p-4 hovertation.description}
+            className="border rounded-xl p-4 hover:bg-on.description}
             </div>
 
             <div className="text-blue-600 text-sm mt-3">
