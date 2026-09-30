@@ -7,7 +7,6 @@ export default function HytteklarCard() {
 
       <div className="grid md:grid-cols-2 gap-6">
 
-        {/* Beitostølen */}
         <div className="border rounded-2xl p-5">
           <h3 className="font-bold text-xl mb-4">
             🎿 Beitostølen
@@ -18,22 +17,20 @@ export default function HytteklarCard() {
             <div>💨 Vind: 4 m/s</div>
             <div>🚠 Heiser: 0 / 7 åpne</div>
             <div>⛷️ Nedfarter: 0 / 23 åpne</div>
-            <div>❄️ Snødybde: 56 cm</div>
-            <div>🏔️ Valdresflye: Se Vegvesenet</div>
-          </div>
-
-          <div className="mt-4 pt-4 border-t">
-            <div className="font-semibold mb-2">
-              🚗 Kjøretider
+            <div>
+              🏔️{" "}
+              <a
+                href="https://www.vegvesen.no/trafikk/fjelloverganger/91146625?lat=61.41104&lng=8.81768&zoom=10"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 hover:underline"
+              >
+                Valdresflye
+              </a>
             </div>
-
-            <div>Asker → Beitostølen: 3 t 05 m</div>
-            <div>Oslo → Beitostølen: 3 t 20 m</div>
-            <div>Tønsberg → Beitostølen: 3 t 45 m</div>
           </div>
         </div>
 
-        {/* Loen */}
         <div className="border rounded-2xl p-5">
           <h3 className="font-bold text-xl mb-4">
             🏞️ Loen / Bødal
@@ -43,17 +40,17 @@ export default function HytteklarCard() {
             <div>🌦️ Temperatur: 5°C</div>
             <div>💨 Vind: 2 m/s</div>
             <div>🚠 Loen Skylift: Åpen</div>
-            <div>❄️ Strynefjellet: Se Vegvesenet</div>
-          </div>
-
-          <div className="mt-4 pt-4 border-t">
-            <div className="font-semibold mb-2">
-              🚗 Kjøretider
+            <div>
+              ❄️{" "}
+              <a
+                href="https://www.vegvesen.no/trafikk/fjelloverganger/91163580?lat=61.98556&lng=7.53474&zoom=9"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 hover:underline"
+              >
+                Strynefjellet
+              </a>
             </div>
-
-            <div>Asker → Loen: 5 t 25 m</div>
-            <div>Oslo → Loen: 5 t 45 m</div>
-            <div>Tønsberg → Loen: 6 t 15 m</div>
           </div>
         </div>
 
