@@ -9,22 +9,26 @@ const LOCATIONS = {
 };
 
 async function getTravelTime(start, end) {
-  const response = await fetch(
-    `https://router.project-osrm.org/route/v1/driving/${start[0]},${start[1]};${end[0]},${end[1]}?overview=false`
-  );
+  try {
+    const response = await fetch(
+      `https://router.project-osrm.org/route/v1/driving/${start[0]},${start[1]};${end[0]},${end[1]}?overview=false`
+    );
 
-  const data = await response.json();
+    const data = await response.json();
 
-  if (!data.routes?.length) {
-    return "Ukjent";
+    if (!data.routes || data.routes.length === 0) {
+      return "Ukjent";
+    }
+
+    const seconds = data.routes[0].duration;
+    const hours = Math.floor(seconds / 3600);
+    const minutes = Math.round((seconds % 3600) / 60);
+
+    return `${hours} t ${minutes} min`;
+  } catch (error) {
+    console.error(error);
+    return "Feil";
   }
-
-  const seconds = data.routes[0].duration;
-
-  const hours = Math.floor(seconds / 3600);
-  const minutes = Math.round((seconds % 3600) / 60);
-
-  return `${hours} t ${minutes} min`;
 }
 
 export default function TravelTimesCard() {
@@ -38,7 +42,7 @@ export default function TravelTimesCard() {
   });
 
   useEffect(() => {
-    async function load() {
+    async function loadTimes() {
       const results = {
         askerBeito: await getTravelTime(
           LOCATIONS.asker,
@@ -74,38 +78,38 @@ export default function TravelTimesCard() {
       setTimes(results);
     }
 
-    load();
+    loadTimes();
   }, []);
 
   return (
     <div className="bg-white rounded-3xl p-6 shadow">
-      <h2 className="font-bold text-xl mb-6">
+      <h2 className="font-bold text-2xl mb-6">
         🚗 Estimerte kjøretider
       </h2>
 
-      <div className="grid md:grid-cols-2 gap-8">
+      <div className="grid md:grid-cols-2 gap-6">
         <div>
-          <h3 className="font-semibold text-lg mb-4">
+          <h3 className="font-bold text-lg mb-4">
             🏔️ Beitostølen
           </h3>
 
           <div className="space-y-3">
             <div className="border rounded-xl p-3">
-              📍 Asker
+              <div>📍 Asker</div>
               <div className="font-bold">
                 {times.askerBeito}
               </div>
             </div>
 
             <div className="border rounded-xl p-3">
-              📍 Oslo
+              <div>📍 Oslo</div>
               <div className="font-bold">
                 {times.osloBeito}
               </div>
             </div>
 
             <div className="border rounded-xl p-3">
-              📍 Tønsberg
+              <div>📍 Tønsberg</div>
               <div className="font-bold">
                 {times.tonsbergBeito}
               </div>
@@ -114,27 +118,27 @@ export default function TravelTimesCard() {
         </div>
 
         <div>
-          <h3 className="font-semibold text-lg mb-4">
-            🏞️ Loen
+          <h3 className="font-bold text-lg mb-4">
+            🏞️ Loen / Bødal
           </h3>
 
           <div className="space-y-3">
             <div className="border rounded-xl p-3">
-              📍 Asker
+              <div>📍 Asker</div>
               <div className="font-bold">
                 {times.askerLoen}
               </div>
             </div>
 
             <div className="border rounded-xl p-3">
-              📍 Oslo
+              <div>📍 Oslo</div>
               <div className="font-bold">
                 {times.osloLoen}
               </div>
             </div>
 
             <div className="border rounded-xl p-3">
-              📍 Tønsberg
+              <div>📍 Tønsberg</div>
               <div className="font-bold">
                 {times.tonsbergLoen}
               </div>
