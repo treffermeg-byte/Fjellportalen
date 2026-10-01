@@ -8,7 +8,6 @@ export default function CameraSection() {
       <div className="grid md:grid-cols-2 gap-6">
 
         <div className="border rounded-2xl overflow-hidden">
-
           <img
             src="https://kamera.atlas.vegvesen.no/api/images/3000012_1"
             alt="Valdresflye"
@@ -23,8 +22,16 @@ export default function CameraSection() {
             <p className="text-sm text-slate-500">
               Webkamera fra Statens vegvesen
             </p>
-          </div>
 
+            <a
+              href="https://www.vegvesen.no/trafikk"
+              target="_blank"
+              rel="noreferrer"
+              className="text-blue-600 text-sm mt-2 inline-block hover:underline"
+            >
+              Åpne hos Vegvesenet →
+            </a>
+          </div>
         </div>
 
         <a
@@ -43,6 +50,10 @@ export default function CameraSection() {
 
           <p className="text-sm text-slate-500 text-center mt-2">
             Åpne panorama-kamera
+          </p>
+
+          <p className="text-blue-600 text-center text-sm mt-3">
+            Åpne kamera →
           </p>
         </a>
 
