@@ -9,10 +9,13 @@ import DrivstoffLadingCard from "./components/DrivstoffLadingCard";
 import LangrennCard from "./components/LangrennCard";
 import BussCard from "./components/BussCard";
 
+<div className="mb-6">
+<BussCard />
+</div>
+
 import useWeather from "./Hooks/useWeather";
 import useForecast from "./Hooks/useForecast";
 import useSunTimes from "./Hooks/useSunTimes";
-
 
 export default function App() {
   const beitoWeather = useWeather(61.249, 8.906);
@@ -24,21 +27,6 @@ export default function App() {
   const beitoSun = useSunTimes(61.249, 8.906);
   const loenSun = useSunTimes(61.873, 6.857);
 
-  <WeatherCard
-  title="🏔️ Beitostølen"
-  temp={beitoWeather.temp}
-  wind={beitoWeather.wind}
-  sunrise={beitoSun.sunrise}
-  sunset={beitoSun.sunset}
-/>
-
-<WeatherCard
-  title="🏞️ Loen / Bødal"
-  temp={loenWeather.temp}
-  wind={loenWeather.wind}
-  sunrise={loenSun.sunrise}
-  sunset={loenSun.sunset}
-/>
   return (
     <div className="min-h-screen bg-slate-100">
       <div className="max-w-7xl mx-auto p-6">
@@ -48,8 +36,8 @@ export default function App() {
 
         <p className="text-slate-600 mb-6">
           Vær, kjøretider, fjelloverganger, heisstatus,
-          langrenn, drivstoff, buss, kameraer og
-          reiseinformasjon samlet på ett sted.
+          langrenn, drivstoff, kameraer og reiseinformasjon
+          samlet på ett sted.
         </p>
 
         <div className="mb-6">
@@ -61,10 +49,6 @@ export default function App() {
 
         <div className="mb-6">
           <DrivstoffLadingCard />
-        </div>
-
-        <div className="mb-6">
-          <BussCard />
         </div>
 
         <div className="grid md:grid-cols-2 gap-6 mb-6">

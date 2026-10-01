@@ -1,33 +1,50 @@
 import { useEffect, useState } from "react";
 
-export default function useBusDepartures() {
-  const [journeys, setJourneys] = useState([]);
+export default function useBusDepartures(
+  fromLat,
+  fromLon,
+  toLat,
+  toLon
+) {
+  const [departures, setDepartures] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchTrips() {
       try {
+        setLoading(true);
+
         const query = {
           query: `
           {
             trip(
               from: {
                 coordinates: {
-                  latitude: 59.2675
-                  longitude: 10.4076
+                  latitude: ${fromLat}
+                  longitude: ${fromLon}
                 }
               }
               to: {
                 coordinates: {
-                  latitude: 61.249
-                  longitude: 8.906
+                  latitude: ${toLat}
+                  longitude: ${toLon}
                 }
               }
-              numTripPatterns: 3
+              numTripPatterns: 10
             ) {
               tripPatterns {
-                duration
                 expectedStartTime
                 expectedEndTime
+                duration
+
+                legs {
+                  mode
+
+                  line {
+                    publicCode
+                    name
+                  }
+                }
               }
             }
           }
@@ -46,13 +63,28 @@ export default function useBusDepartures() {
           }
         );
 
-        const data = await response.json();
+        const result = await response.json();
 
-        setJourneys(
-          data.data.trip.tripPatterns || []
+        const trips =
+          result?.data?.trip?.tripPatterns || [];
+
+        const busOnlyTrips = trips.filter(
+          (trip) =>
+            trip.legs &&
+            trip.legs.length > 0 &&
+            trip.legs.every(
+              (leg) => leg.mode === "bus"
+            )
         );
-      } catch (err) {
-        console.error(err);
+
+        setDepartures(busOnlyTrips);
+      } catch (error) {
+        console.error(
+          "Feil ved henting av bussavganger:",
+          error
+        );
+      } finally {
+        setLoading(false);
       }
     }
 
@@ -60,11 +92,11 @@ export default function useBusDepartures() {
 
     const interval = setInterval(
       fetchTrips,
-      300000
+      5 * 60 * 1000
     );
 
     return () => clearInterval(interval);
-  }, []);
+  }, [fromLat, fromLon, toLat, toLon]);
 
-  return journeys;
+  return { departures, loading };
 }
