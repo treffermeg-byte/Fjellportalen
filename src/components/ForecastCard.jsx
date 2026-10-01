@@ -10,42 +10,42 @@ export default function ForecastCard({
 
       {forecast.length === 0 ? (
         <p className="text-slate-500">
-          Laster prognosedata...
+          Laster prognose...
         </p>
       ) : (
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-          {forecast.map((day) => (
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {forecast.map((day, index) => (
             <div
-              key={day.day}
-              className="border rounded-2xl p-3 text-center"
+              key={`${day.day}-${index}`}
+              className="border rounded-2xl p-4 text-center"
             >
-              <div className="text-3xl">
-                {day.icon}
+              <div className="text-4xl mb-2">
+                {day.icon || "🌦️"}
               </div>
 
-              <div className="font-semibold mt-2">
+              <div className="font-semibold">
                 {day.day}
               </div>
 
-              <div className="text-lg font-bold">
-                {day.temp}°
+              <div className="text-lg font-bold text-red-600 mt-2">
+                ↑ {day.maxTemp}°
               </div>
 
-              <div>
+              <div className="text-lg font-bold text-blue-600">
+                ↓ {day.minTemp}°
+              </div>
+
+              <div className="text-slate-600 mt-2">
                 💨 {day.wind} m/s
               </div>
 
-              {day.rain !== undefined && (
-                <div>
-                  🌧️ {day.rain} mm
-                </div>
-              )}
+              <div className="text-blue-600 mt-1">
+                🌧️ {day.precipitation ?? 0} mm
+              </div>
 
-              {day.snow !== undefined && (
-                <div className="text-cyan-600 font-semibold">
-                  ❄️ {day.snow} cm
-                </div>
-              )}
+              <div className="text-cyan-600 font-semibold mt-1">
+                ❄️ {day.newSnow ?? 0} cm
+              </div>
             </div>
           ))}
         </div>
