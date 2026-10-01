@@ -7,25 +7,23 @@ import CameraSection from "./components/CameraSection";
 import HytteklarCard from "./components/HytteklarCard";
 import DrivstoffLadingCard from "./components/DrivstoffLadingCard";
 import LangrennCard from "./components/LangrennCard";
+
 import useWeather from "./Hooks/useWeather";
+import useForecast from "./Hooks/useForecast";
 
 export default function App() {
   const beitoWeather = useWeather(61.249, 8.906);
   const loenWeather = useWeather(61.873, 6.857);
 
-  const beitoForecast = [
-    { day: "Man", icon: "☀️", temp: 3, wind: 4 },
-    { day: "Tir", icon: "⛅", temp: 1, wind: 6 },
-    { day: "Ons", icon: "❄️", temp: -2, wind: 7 },
-    { day: "Tor", icon: "❄️", temp: -4, wind: 5 },
-  ];
+  const beitoForecast = useForecast(
+    61.249,
+    8.906
+  );
 
-  const loenForecast = [
-    { day: "Man", icon: "🌦️", temp: 8, wind: 2 },
-    { day: "Tir", icon: "🌧️", temp: 7, wind: 3 },
-    { day: "Ons", icon: "⛅", temp: 6, wind: 4 },
-    { day: "Tor", icon: "☀️", temp: 9, wind: 2 },
-  ];
+  const loenForecast = useForecast(
+    61.873,
+    6.857
+  );
 
   return (
     <div className="min-h-screen bg-slate-100">
@@ -35,9 +33,10 @@ export default function App() {
         </h1>
 
         <p className="text-slate-600 mb-6">
-          Vær, kjøretider, fjelloverganger, heisstatus,
-          langrenn, drivstoff, kameraer og reiseinformasjon
-          samlet på ett sted.
+          Vær, kjøretider, fjelloverganger,
+          heisstatus, langrenn, drivstoff,
+          kameraer og reiseinformasjon samlet
+          på ett sted.
         </p>
 
         <div className="mb-6">
@@ -61,7 +60,7 @@ export default function App() {
           />
 
           <WeatherCard
-            title="🏞️ Loen"
+            title="🏞️ Loen / Bødal"
             temp={loenWeather.temp}
             wind={loenWeather.wind}
             sunrise="07:32"
@@ -76,7 +75,7 @@ export default function App() {
           />
 
           <ForecastCard
-            title="📍 Loen - 4 dagers prognose"
+            title="📍 Loen / Bødal - 4 dagers prognose"
             forecast={loenForecast}
           />
         </div>

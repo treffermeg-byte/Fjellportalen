@@ -10,7 +10,7 @@ export default function ForecastCard({
 
       {forecast.length === 0 ? (
         <p className="text-slate-500">
-          Ingen prognosedata tilgjengelig.
+          Laster prognosedata...
         </p>
       ) : (
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
@@ -35,13 +35,17 @@ export default function ForecastCard({
                 💨 {day.wind} m/s
               </div>
 
-              <div>
-                🌧️ {day.rain ?? 0} mm
-              </div>
+              {day.rain !== undefined && (
+                <div>
+                  🌧️ {day.rain} mm
+                </div>
+              )}
 
-              <div className="text-cyan-600 font-semibold">
-                ❄️ {day.snow ?? 0} cm
-              </div>
+              {day.snow !== undefined && (
+                <div className="text-cyan-600 font-semibold">
+                  ❄️ {day.snow} cm
+                </div>
+              )}
             </div>
           ))}
         </div>
