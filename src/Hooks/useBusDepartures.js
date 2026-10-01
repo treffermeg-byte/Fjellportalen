@@ -9,6 +9,9 @@ export default function useBusDepartures(
   const [departures, setDepartures] = useState([]);
   const [loading, setLoading] = useState(true);
 
+console.log(departures);
+console.log(loading);
+
   useEffect(() => {
     async function fetchTrips() {
       try {

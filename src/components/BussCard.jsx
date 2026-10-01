@@ -1,3 +1,10 @@
+export default function BussCard() {
+  return (
+    <div className="bg-white rounded-3xl p-6 shadow">
+      <h2>🚌 Bussavganger virker</h2>
+    </div>
+  );
+}
 import useBusDepartures from "../Hooks/useBusDepartures";
 
 export default function BussCard() {
