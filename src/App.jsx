@@ -7,21 +7,10 @@ import CameraSection from "./components/CameraSection";
 import HytteklarCard from "./components/HytteklarCard";
 import DrivstoffLadingCard from "./components/DrivstoffLadingCard";
 import LangrennCard from "./components/LangrennCard";
+import useWeather from "./Hooks/useWeather";
 
 export default function App() {
-  const beitoWeather = {
-    temp: -2,
-    wind: 4,
-    sunrise: "07:28",
-    sunset: "18:43",
-  };
-
-  const loenWeather = {
-    temp: 5,
-    wind: 2,
-    sunrise: "07:32",
-    sunset: "18:51",
-  };
+  const weather = useWeather();
 
   const beitoForecast = [
     {
@@ -96,6 +85,7 @@ export default function App() {
   return (
     <div className="min-h-screen bg-slate-100">
       <div className="max-w-7xl mx-auto p-6">
+
         <h1 className="text-5xl font-bold mb-2">
           🏔️ Fjellportalen
         </h1>
@@ -116,18 +106,18 @@ export default function App() {
         <div className="grid md:grid-cols-2 gap-6 mb-6">
           <WeatherCard
             title="🏔️ Beitostølen"
-            temp={beitoWeather.temp}
-            wind={beitoWeather.wind}
-            sunrise={beitoWeather.sunrise}
-            sunset={beitoWeather.sunset}
+            temp={weather.beitostolen.temp}
+            wind={weather.beitostolen.wind}
+            sunrise="07:28"
+            sunset="18:43"
           />
 
           <WeatherCard
             title="🏞️ Loen"
-            temp={loenWeather.temp}
-            wind={loenWeather.wind}
-            sunrise={loenWeather.sunrise}
-            sunset={loenWeather.sunset}
+            temp={weather.loen.temp}
+            wind={weather.loen.wind}
+            sunrise="07:32"
+            sunset="18:51"
           />
         </div>
 
@@ -162,8 +152,8 @@ export default function App() {
         <div className="mb-6">
           <CameraSection />
         </div>
+
       </div>
     </div>
   );
 }
-``
