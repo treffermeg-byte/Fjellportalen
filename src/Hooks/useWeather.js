@@ -18,6 +18,12 @@ export default function useWeather(lat, lon) {
           }
         );
 
+        if (!response.ok) {
+          throw new Error(
+            `HTTP-feil: ${response.status}`
+          );
+        }
+
         const data = await response.json();
 
         const current =
@@ -28,11 +34,26 @@ export default function useWeather(lat, lon) {
           wind: Math.round(current.wind_speed),
         });
       } catch (error) {
-        console.error("Feil ved henting av vær:", error);
+        console.error(
+          "Feil ved henting av værdata:",
+          error
+        );
+
+        setWeather({
+          temp: "--",
+          wind: "--",
+        });
       }
     }
 
     fetchWeather();
+
+    const interval = setInterval(
+      fetchWeather,
+      15 * 60 * 1000
+    );
+
+    return () => clearInterval(interval);
   }, [lat, lon]);
 
   return weather;

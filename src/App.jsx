@@ -10,20 +10,17 @@ import LangrennCard from "./components/LangrennCard";
 
 import useWeather from "./Hooks/useWeather";
 import useForecast from "./Hooks/useForecast";
+import useSunTimes from "./Hooks/useSunTimes";
 
 export default function App() {
   const beitoWeather = useWeather(61.249, 8.906);
   const loenWeather = useWeather(61.873, 6.857);
 
-  const beitoForecast = useForecast(
-    61.249,
-    8.906
-  );
+  const beitoForecast = useForecast(61.249, 8.906);
+  const loenForecast = useForecast(61.873, 6.857);
 
-  const loenForecast = useForecast(
-    61.873,
-    6.857
-  );
+  const beitoSun = useSunTimes(61.249, 8.906);
+  const loenSun = useSunTimes(61.873, 6.857);
 
   return (
     <div className="min-h-screen bg-slate-100">
@@ -33,10 +30,9 @@ export default function App() {
         </h1>
 
         <p className="text-slate-600 mb-6">
-          Vær, kjøretider, fjelloverganger,
-          heisstatus, langrenn, drivstoff,
-          kameraer og reiseinformasjon samlet
-          på ett sted.
+          Vær, kjøretider, fjelloverganger, heisstatus,
+          langrenn, drivstoff, kameraer og reiseinformasjon
+          samlet på ett sted.
         </p>
 
         <div className="mb-6">
@@ -55,16 +51,16 @@ export default function App() {
             title="🏔️ Beitostølen"
             temp={beitoWeather.temp}
             wind={beitoWeather.wind}
-            sunrise="07:28"
-            sunset="18:43"
+            sunrise={beitoSun.sunrise}
+            sunset={beitoSun.sunset}
           />
 
           <WeatherCard
             title="🏞️ Loen / Bødal"
             temp={loenWeather.temp}
             wind={loenWeather.wind}
-            sunrise="07:32"
-            sunset="18:51"
+            sunrise={loenSun.sunrise}
+            sunset={loenSun.sunset}
           />
         </div>
 
