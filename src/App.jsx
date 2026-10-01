@@ -9,10 +9,6 @@ import DrivstoffLadingCard from "./components/DrivstoffLadingCard";
 import LangrennCard from "./components/LangrennCard";
 import BussCard from "./components/BussCard";
 
-<div className="mb-6">
-<BussCard />
-</div>
-
 import useWeather from "./Hooks/useWeather";
 import useForecast from "./Hooks/useForecast";
 import useSunTimes from "./Hooks/useSunTimes";
@@ -36,8 +32,8 @@ export default function App() {
 
         <p className="text-slate-600 mb-6">
           Vær, kjøretider, fjelloverganger, heisstatus,
-          langrenn, drivstoff, kameraer og reiseinformasjon
-          samlet på ett sted.
+          langrenn, drivstoff, buss, kameraer og
+          reiseinformasjon samlet på ett sted.
         </p>
 
         <div className="mb-6">
@@ -45,10 +41,6 @@ export default function App() {
             beitoWeather={beitoWeather}
             loenWeather={loenWeather}
           />
-        </div>
-
-        <div className="mb-6">
-          <DrivstoffLadingCard />
         </div>
 
         <div className="grid md:grid-cols-2 gap-6 mb-6">
@@ -79,6 +71,14 @@ export default function App() {
             title="📍 Loen / Bødal - 4 dagers prognose"
             forecast={loenForecast}
           />
+        </div>
+
+        <div className="mb-6">
+          <DrivstoffLadingCard />
+        </div>
+
+        <div className="mb-6">
+          <BussCard />
         </div>
 
         <div className="mb-6">
