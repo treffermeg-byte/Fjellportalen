@@ -7,34 +7,80 @@ import CameraSection from "./components/CameraSection";
 import HytteklarCard from "./components/HytteklarCard";
 import DrivstoffLadingCard from "./components/DrivstoffLadingCard";
 import LangrennCard from "./components/LangrennCard";
+import useWeather from "./Hooks/useWeather";
 
 export default function App() {
-  const beitoWeather = {
-    temp: -2,
-    wind: 4,
-    sunrise: "07:28",
-    sunset: "18:43",
-  };
-
-  const loenWeather = {
-    temp: 5,
-    wind: 2,
-    sunrise: "07:32",
-    sunset: "18:51",
-  };
+  const beitoWeather = useWeather(61.249, 8.906);
+  const loenWeather = useWeather(61.873, 6.857);
 
   const beitoForecast = [
-    { day: "Man", icon: "☀️", temp: 3, wind: 4 },
-    { day: "Tir", icon: "⛅", temp: 1, wind: 6 },
-    { day: "Ons", icon: "❄️", temp: -2, wind: 7 },
-    { day: "Tor", icon: "❄️", temp: -4, wind: 5 },
+    {
+      day: "Man",
+      icon: "☀️",
+      temp: 3,
+      wind: 4,
+      rain: 0,
+      snow: 0,
+    },
+    {
+      day: "Tir",
+      icon: "⛅",
+      temp: 1,
+      wind: 6,
+      rain: 1,
+      snow: 0,
+    },
+    {
+      day: "Ons",
+      icon: "❄️",
+      temp: -2,
+      wind: 7,
+      rain: 0,
+      snow: 5,
+    },
+    {
+      day: "Tor",
+      icon: "❄️",
+      temp: -4,
+      wind: 5,
+      rain: 0,
+      snow: 8,
+    },
   ];
 
   const loenForecast = [
-    { day: "Man", icon: "🌦️", temp: 8, wind: 2 },
-    { day: "Tir", icon: "🌧️", temp: 7, wind: 3 },
-    { day: "Ons", icon: "⛅", temp: 6, wind: 4 },
-    { day: "Tor", icon: "☀️", temp: 9, wind: 2 },
+    {
+      day: "Man",
+      icon: "🌦️",
+      temp: 8,
+      wind: 2,
+      rain: 5,
+      snow: 0,
+    },
+    {
+      day: "Tir",
+      icon: "🌧️",
+      temp: 7,
+      wind: 3,
+      rain: 10,
+      snow: 0,
+    },
+    {
+      day: "Ons",
+      icon: "⛅",
+      temp: 6,
+      wind: 4,
+      rain: 2,
+      snow: 0,
+    },
+    {
+      day: "Tor",
+      icon: "☀️",
+      temp: 9,
+      wind: 2,
+      rain: 0,
+      snow: 0,
+    },
   ];
 
   return (
@@ -45,8 +91,9 @@ export default function App() {
         </h1>
 
         <p className="text-slate-600 mb-6">
-          Vær, snøforhold, kjøretider, fjelloverganger,
-          heisstatus og kameraer samlet på ett sted.
+          Vær, kjøretider, fjelloverganger, heisstatus,
+          langrenn, drivstoff, kameraer og reiseinformasjon
+          samlet på ett sted.
         </p>
 
         <div className="mb-6">
@@ -57,32 +104,32 @@ export default function App() {
           <DrivstoffLadingCard />
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+        <div className="grid md:grid-cols-2 gap-6 mb-6">
           <WeatherCard
             title="🏔️ Beitostølen"
             temp={beitoWeather.temp}
             wind={beitoWeather.wind}
-            sunrise={beitoWeather.sunrise}
-            sunset={beitoWeather.sunset}
+            sunrise="07:28"
+            sunset="18:43"
           />
 
           <WeatherCard
-            title="📍 Loen / Bødal"
+            title="🏞️ Loen"
             temp={loenWeather.temp}
             wind={loenWeather.wind}
-            sunrise={loenWeather.sunrise}
-            sunset={loenWeather.sunset}
+            sunrise="07:32"
+            sunset="18:51"
           />
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+        <div className="grid md:grid-cols-2 gap-6 mb-6">
           <ForecastCard
-            title="📍 Beitostølen - Prognose"
+            title="📍 Beitostølen - 4 dagers prognose"
             forecast={beitoForecast}
           />
 
           <ForecastCard
-            title="📍 Loen / Bødal - Prognose"
+            title="📍 Loen - 4 dagers prognose"
             forecast={loenForecast}
           />
         </div>
