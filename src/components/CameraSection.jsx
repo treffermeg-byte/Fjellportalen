@@ -7,7 +7,7 @@ export default function CameraSection() {
 
       <div className="grid md:grid-cols-2 gap-6">
         <div className="border rounded-2xl p-6">
-          <h3 className="font-semibold text-lg">
+          <h3 className="font-semibold text-lg mb-3">
             🏔️ Beitostølen
           </h3>
 
@@ -15,8 +15,14 @@ export default function CameraSection() {
             href="https://beito.com/bilde/bilde.jpg"
             target="_blank"
             rel="noopener noreferrer"
-         xl p-6">
-          <h3 className="font-semibold text-lg">
+            className="text-blue-600 hover:underline"
+          >
+            Åpne live-kamera →
+          </a>
+        </div>
+
+        <div className="border rounded-2xl p-6">
+          <h3 className="font-semibold text-lg mb-3">
             📸 Valdresflye
           </h3>
 
@@ -31,7 +37,7 @@ export default function CameraSection() {
         </div>
 
         <div className="border rounded-2xl p-6">
-          <h3 className="font-semibold text-lg">
+          <h3 className="font-semibold text-lg mb-3">
             🌉 Ospeli bru
           </h3>
 
@@ -46,7 +52,7 @@ export default function CameraSection() {
         </div>
 
         <div className="border rounded-2xl p-6">
-          <h3 className="font-semibold text-lg">
+          <h3 className="font-semibold text-lg mb-3">
             📷 Fosnes
           </h3>
 
