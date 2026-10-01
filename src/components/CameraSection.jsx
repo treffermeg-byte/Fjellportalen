@@ -1,107 +1,75 @@
 export default function CameraSection() {
-  const beitostolenCameras = [
-    {
-      title: "📸 Beitostølen Sentrum",
-      image:
-        "https://beito.com/bilde/bilde.jpg",
-      link:
-        "https://beito.com/bilde/bilde.jpg",
-    },
-    {
-      title: "📸 Slettefjell",
-      image:
-        "https://beito.com/bilde/uppload/raudalenalpin.jpg",
-      link:
-        "https://beito.com/bilde/uppload/raudalenalpin.jpg",
-    },
-    {
-      title: "📸 Valdresflye",
-      image:
-        "https://kamera.atlas.vegvesen.no/api/images/3000012_1",
-      link:
-        "https://www.vegvesen.no/trafikk/fjelloverganger/91146625",
-    },
-  ];
-
-  const loenCameras = [
-    {
-      title: "📸 Fosnes",
-      image:
-        "https://kamera.atlas.vegvesen.no/api/images/3000010_1",
-      link:
-        "https://kamera.atlas.vegvesen.no/api/images/3000010_1",
-    },
-    {
-      title: "📸 Ospeli",
-      image:
-        "https://kamera.atlas.vegvesen.no/api/images/3000864_1",
-      link:
-        "https://kamera.atlas.vegvesen.no/api/images/3000864_1",
-    },
-    {
-      title: "📸 Kvitenova",
-      image:
-        "https://kamera.atlas.vegvesen.no/api/images/1429008_1",
-      link:
-        "https://kamera.atlas.vegvesen.no/api/images/1429008_1",
-    },
-  ];
-
   return (
     <div className="bg-white rounded-3xl p-6 shadow">
       <h2 className="font-bold text-2xl mb-6">
         📸 Kameraer
       </h2>
 
-      <div className="grid lg:grid-cols-2 gap-8">
+      <div className="grid md:grid-cols-2 gap-6">
 
-        <div>
-          <h3 className="font-bold text-lg mb-4">
-            🏔️ Beitostølen
-          </h3>
-
-          <div className="grid gap-4">
-            {beitostolenCameras.map((camera) => (
-              <a
-                key={camera.title}
-                href={camera.link}
-                target="_blank"
-                rel="noreferrer"
-                className
-                />
-
-                <div className="p-3">
-                  <div className="font-semibold">
-                    {camera.title}
-                  </div>
-
-                     </a>
-            ))}
+        <div className="border rounded-2xl overflow-hidden">
+          <img
+            src="https://beito.com/bilde/bilde.jpg"
+            alt="Beitostølen Sentrum"
+            className="w-full h-48 object-cover"
+          />
+          <div className="p-3 font-semibold">
+            📸 Beitostølen Sentrum
           </div>
         </div>
 
-        <div>
-          <h3 className="font-bold text-lg mb-4">
-            🏞️ Loen
-          </h3>
+        <div className="border rounded-2xl overflow-hidden">
+          <img
+            src="https://beito.com/bilde/uppload/raudalenalpin.jpg"
+            alt="Slettefjell"
+            className="w-full h-48 object-cover"
+          />
+          <div className="p-3 font-semibold">
+            📸 Slettefjell
+          </div>
+        </div>
 
-          <div className="grid gap-4">
-            {loenCameras.map((camera) => (
-              <a
-                key={camera.title}
-                href={camera.link}
-                target="_blank"
-   
-                  className="w-full h-48 object-cover"
-                />
+        <div className="border rounded-2xl overflow-hidden">
+          <img
+            src="https://kamera.atlas.vegvesen.no/api/images/3000012_1"
+            alt="Valdresflye"
+            className="w-full h-48 object-cover"
+          />
+          <div className="p-3 font-semibold">
+            📸 Valdresflye
+          </div>
+        </div>
 
-                <div className="p-3">
-                  <div className="font-semibold">
-                    {camera.title}
-                  </div>
+        <div className="border rounded-2xl overflow-hidden">
+          <img
+            src="https://kamera.atlas.vegvesen.no/api/images/3000010_1"
+            alt="Fosnes"
+            className="w-full h-48 object-cover"
+          />
+          <div className="p-3 font-semibold">
+            📸 Fosnes
+          </div>
+        </div>
 
-                     </a>
-            ))}
+        <div className="border rounded-2xl overflow-hidden">
+          <img
+            src="https://kamera.atlas.vegvesen.no/api/images/3000864_1"
+            alt="Ospeli bru"
+            className="w-full h-48 object-cover"
+          />
+          <div className="p-3 font-semibold">
+            📸 Ospeli bru
+          </div>
+        </div>
+
+        <div className="border rounded-2xl overflow-hidden">
+          <img
+            src="https://kamera.atlas.vegvesen.no/api/images/1429008_1"
+            alt="Kvitenova"
+            className="w-full h-48 object-cover"
+          />
+          <div className="p-3 font-semibold">
+            📸 Kvitenova
           </div>
         </div>
 
