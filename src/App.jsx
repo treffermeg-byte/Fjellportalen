@@ -7,79 +7,34 @@ import CameraSection from "./components/CameraSection";
 import HytteklarCard from "./components/HytteklarCard";
 import DrivstoffLadingCard from "./components/DrivstoffLadingCard";
 import LangrennCard from "./components/LangrennCard";
-import useWeather from "./Hooks/useWeather";
 
 export default function App() {
-  const weather = useWeather();
+  const beitoWeather = {
+    temp: -2,
+    wind: 4,
+    sunrise: "07:28",
+    sunset: "18:43",
+  };
+
+  const loenWeather = {
+    temp: 5,
+    wind: 2,
+    sunrise: "07:32",
+    sunset: "18:51",
+  };
 
   const beitoForecast = [
-    {
-      day: "Man",
-      icon: "☀️",
-      temp: 3,
-      wind: 4,
-      rain: 0,
-      snow: 0,
-    },
-    {
-      day: "Tir",
-      icon: "⛅",
-      temp: 1,
-      wind: 6,
-      rain: 1,
-      snow: 0,
-    },
-    {
-      day: "Ons",
-      icon: "❄️",
-      temp: -2,
-      wind: 7,
-      rain: 0,
-      snow: 5,
-    },
-    {
-      day: "Tor",
-      icon: "❄️",
-      temp: -4,
-      wind: 5,
-      rain: 0,
-      snow: 8,
-    },
+    { day: "Man", icon: "☀️", temp: 3, wind: 4 },
+    { day: "Tir", icon: "⛅", temp: 1, wind: 6 },
+    { day: "Ons", icon: "❄️", temp: -2, wind: 7 },
+    { day: "Tor", icon: "❄️", temp: -4, wind: 5 },
   ];
 
   const loenForecast = [
-    {
-      day: "Man",
-      icon: "🌦️",
-      temp: 8,
-      wind: 2,
-      rain: 5,
-      snow: 0,
-    },
-    {
-      day: "Tir",
-      icon: "🌧️",
-      temp: 7,
-      wind: 3,
-      rain: 10,
-      snow: 0,
-    },
-    {
-      day: "Ons",
-      icon: "⛅",
-      temp: 6,
-      wind: 4,
-      rain: 2,
-      snow: 0,
-    },
-    {
-      day: "Tor",
-      icon: "☀️",
-      temp: 9,
-      wind: 2,
-      rain: 0,
-      snow: 0,
-    },
+    { day: "Man", icon: "🌦️", temp: 8, wind: 2 },
+    { day: "Tir", icon: "🌧️", temp: 7, wind: 3 },
+    { day: "Ons", icon: "⛅", temp: 6, wind: 4 },
+    { day: "Tor", icon: "☀️", temp: 9, wind: 2 },
   ];
 
   return (
@@ -102,32 +57,32 @@ export default function App() {
           <DrivstoffLadingCard />
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6 mb-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
           <WeatherCard
             title="🏔️ Beitostølen"
-            temp={weather.beitostolen.temp}
-            wind={weather.beitostolen.wind}
-            sunrise="07:28"
-            sunset="18:43"
+            temp={beitoWeather.temp}
+            wind={beitoWeather.wind}
+            sunrise={beitoWeather.sunrise}
+            sunset={beitoWeather.sunset}
           />
 
           <WeatherCard
-            title="🏞️ Loen"
-            temp={weather.loen.temp}
-            wind={weather.loen.wind}
-            sunrise="07:32"
-            sunset="18:51"
+            title="📍 Loen / Bødal"
+            temp={loenWeather.temp}
+            wind={loenWeather.wind}
+            sunrise={loenWeather.sunrise}
+            sunset={loenWeather.sunset}
           />
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6 mb-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
           <ForecastCard
-            title="📍 Beitostølen - 4 dagers prognose"
+            title="📍 Beitostølen - Prognose"
             forecast={beitoForecast}
           />
 
           <ForecastCard
-            title="📍 Loen - 4 dagers prognose"
+            title="📍 Loen / Bødal - Prognose"
             forecast={loenForecast}
           />
         </div>
