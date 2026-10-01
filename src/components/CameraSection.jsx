@@ -1,70 +1,110 @@
 export default function CameraSection() {
+  const beitostolenCameras = [
+    {
+      title: "📸 Beitostølen Sentrum",
+      image:
+        "https://beito.com/bilde/bilde.jpg",
+      link:
+        "https://beito.com/bilde/bilde.jpg",
+    },
+    {
+      title: "📸 Slettefjell",
+      image:
+        "https://beito.com/bilde/uppload/raudalenalpin.jpg",
+      link:
+        "https://beito.com/bilde/uppload/raudalenalpin.jpg",
+    },
+    {
+      title: "📸 Valdresflye",
+      image:
+        "https://kamera.atlas.vegvesen.no/api/images/3000012_1",
+      link:
+        "https://www.vegvesen.no/trafikk/fjelloverganger/91146625",
+    },
+  ];
+
+  const loenCameras = [
+    {
+      title: "📸 Fosnes",
+      image:
+        "https://kamera.atlas.vegvesen.no/api/images/3000010_1",
+      link:
+        "https://kamera.atlas.vegvesen.no/api/images/3000010_1",
+    },
+    {
+      title: "📸 Ospeli",
+      image:
+        "https://kamera.atlas.vegvesen.no/api/images/3000864_1",
+      link:
+        "https://kamera.atlas.vegvesen.no/api/images/3000864_1",
+    },
+    {
+      title: "📸 Kvitenova",
+      image:
+        "https://kamera.atlas.vegvesen.no/api/images/1429008_1",
+      link:
+        "https://kamera.atlas.vegvesen.no/api/images/1429008_1",
+    },
+  ];
+
   return (
     <div className="bg-white rounded-3xl p-6 shadow">
       <h2 className="font-bold text-2xl mb-6">
         📸 Kameraer
       </h2>
 
-      <div className="grid md:grid-cols-2 gap-6">
-        <div className="border rounded-2xl p-6">
-          <h3 className="font-semibold text-lg mb-3">
+      <div className="grid lg:grid-cols-2 gap-8">
+
+        <div>
+          <h3 className="font-bold text-lg mb-4">
             🏔️ Beitostølen
           </h3>
 
-          <a
-            href="https://beito.com/bilde/bilde.jpg"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-blue-600 hover:underline"
-          >
-            Åpne live-kamera →
-          </a>
+          <div className="grid gap-4">
+            {beitostolenCameras.map((camera) => (
+              <a
+                key={camera.title}
+                href={camera.link}
+                target="_blank"
+                rel="noreferrer"
+                className
+                />
+
+                <div className="p-3">
+                  <div className="font-semibold">
+                    {camera.title}
+                  </div>
+
+                     </a>
+            ))}
+          </div>
         </div>
 
-        <div className="border rounded-2xl p-6">
-          <h3 className="font-semibold text-lg mb-3">
-            📸 Valdresflye
+        <div>
+          <h3 className="font-bold text-lg mb-4">
+            🏞️ Loen
           </h3>
 
-          <a
-            href="https://www.vegvesen.no/trafikk"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-blue-600 hover:underline"
-          >
-            Åpne kamera →
-          </a>
+          <div className="grid gap-4">
+            {loenCameras.map((camera) => (
+              <a
+                key={camera.title}
+                href={camera.link}
+                target="_blank"
+   
+                  className="w-full h-48 object-cover"
+                />
+
+                <div className="p-3">
+                  <div className="font-semibold">
+                    {camera.title}
+                  </div>
+
+                     </a>
+            ))}
+          </div>
         </div>
 
-        <div className="border rounded-2xl p-6">
-          <h3 className="font-semibold text-lg mb-3">
-            🌉 Ospeli bru
-          </h3>
-
-          <a
-            href="https://www.vegvesen.no/trafikk/vaerveikamera/3000864?lng=7.26244&lat=61.93796&zoom=10"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-blue-600 hover:underline"
-          >
-            Åpne kamera →
-          </a>
-        </div>
-
-        <div className="border rounded-2xl p-6">
-          <h3 className="font-semibold text-lg mb-3">
-            📷 Fosnes
-          </h3>
-
-          <a
-            href="https://www.vegvesen.no/trafikk/vaerveikamera/3000010?lng=7.05033&lat=61.91033&zoom=10"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-blue-600 hover:underline"
-          >
-            Åpne kamera →
-          </a>
-        </div>
       </div>
     </div>
   );
