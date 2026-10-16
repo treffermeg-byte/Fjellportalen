@@ -2,8 +2,6 @@ export default function WeatherCard({
   title,
   temp,
   wind,
-  sunrise,
-  sunset,
 }) {
   return (
     <div className="bg-white rounded-3xl p-6 shadow">
@@ -29,26 +27,6 @@ export default function WeatherCard({
 
           <div className="text-3xl font-bold mt-1">
             {wind ?? "--"} m/s
-          </div>
-        </div>
-
-        <div className="bg-amber-50 rounded-2xl p-4">
-          <div className="text-slate-500 text-sm">
-            🌅 Soloppgang
-          </div>
-
-          <div className="text-xl font-semibold mt-1">
-            {sunrise || "--:--"}
-          </div>
-        </div>
-
-        <div className="bg-orange-50 rounded-2xl p-4">
-          <div className="text-slate-500 text-sm">
-            🌇 Solnedgang
-          </div>
-
-          <div className="text-xl font-semibold mt-1">
-            {sunset || "--:--"}
           </div>
         </div>
       </div>
