@@ -12,11 +12,25 @@ import useWeather from "./Hooks/useWeather";
 import useForecast from "./Hooks/useForecast";
 
 export default function App() {
-  const beitoWeather = useWeather(61.249, 8.906);
-  const loenWeather = useWeather(61.873, 6.857);
+  const beitoWeather = useWeather(
+    61.249,
+    8.906
+  );
 
-  const beitoForecast = useForecast(61.249, 8.906);
-  const loenForecast = useForecast(61.873, 6.857);
+  const loenWeather = useWeather(
+    61.873,
+    6.857
+  );
+
+  const beitoForecast = useForecast(
+    61.249,
+    8.906
+  );
+
+  const loenForecast = useForecast(
+    61.873,
+    6.857
+  );
 
   return (
     <div className="min-h-screen bg-slate-100">
@@ -26,9 +40,11 @@ export default function App() {
         </h1>
 
         <p className="text-slate-600 mb-6">
-          Vær, kjøretider, fjelloverganger, heisstatus,
-          langrenn, drivstoff, buss, kameraer og
-          reiseinformasjon samlet på ett sted.
+          Vær, kjøretider,
+          fjelloverganger, heisstatus,
+          langrenn, drivstoff, buss,
+          kameraer og reiseinformasjon
+          samlet på ett sted.
         </p>
 
         <div className="mb-6">
@@ -50,34 +66,4 @@ export default function App() {
           />
         </div>
 
-        <div className="mb-6">
-          <DrivstoffLadingCard />
-        </div>
-
-        <div className="mb-6">
-          <BussCard />
-        </div>
-
-        <div className="mb-6">
-          <HeisStatusCard />
-        </div>
-
-        <div className="mb-6">
-          <LangrennCard />
-        </div>
-
-        <div className="mb-6">
-          <TravelTimesCard />
-        </div>
-
-        <div className="mb-6">
-          <FjellovergangerCard />
-        </div>
-
-        <div className="mb-6">
-          <CameraSection />
-        </div>
-      </div>
-    </div>
-  );
-}
+        <div className="mb-
