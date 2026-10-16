@@ -16,6 +16,10 @@ export default function App() {
   const beitoWeather = useWeather(61.249, 8.906);
   const loenWeather = useWeather(61.873, 6.857);
 
+  const beitoForecast = useForecast(61.249, 8.906);
+  const loenForecast = useForecast(61.873, 6.857);
+
+  return (
 
   return (
     <div className="min-h-screen bg-slate-100">
