@@ -4,8 +4,10 @@ const LOCATIONS = {
   asker: [10.435, 59.835],
   oslo: [10.752, 59.913],
   tonsberg: [10.407, 59.267],
+
   beitostolen: [8.906, 61.249],
-  loen: [6.857, 61.873],
+
+  bodal: [6.754, 61.846],
 };
 
 async function getTravelTime(start, end) {
@@ -16,29 +18,41 @@ async function getTravelTime(start, end) {
 
     const data = await response.json();
 
-    if (!data.routes || data.routes.length === 0) {
+    if (!data.routes?.length) {
       return "Ukjent";
     }
 
     const seconds = data.routes[0].duration;
+
     const hours = Math.floor(seconds / 3600);
-    const minutes = Math.round((seconds % 3600) / 60);
+
+    const minutes = Math.round(
+      (seconds % 3600) / 60
+    );
 
     return `${hours} t ${minutes} min`;
   } catch (error) {
-    console.error(error);
+    console.error(
+      "Feil ved henting av kjøretid:",
+      error
+    );
+
     return "Feil";
   }
 }
 
 export default function TravelTimesCard() {
+  const [lastUpdated, setLastUpdated] =
+    useState("");
+
   const [times, setTimes] = useState({
     askerBeito: "Laster...",
     osloBeito: "Laster...",
     tonsbergBeito: "Laster...",
-    askerLoen: "Laster...",
-    osloLoen: "Laster...",
-    tonsbergLoen: "Laster...",
+
+    askerBodal: "Laster...",
+    osloBodal: "Laster...",
+    tonsbergBodal: "Laster...",
   });
 
   useEffect(() => {
@@ -59,93 +73,35 @@ export default function TravelTimesCard() {
           LOCATIONS.beitostolen
         ),
 
-        askerLoen: await getTravelTime(
+        askerBodal: await getTravelTime(
           LOCATIONS.asker,
-          LOCATIONS.loen
+          LOCATIONS.bodal
         ),
 
-        osloLoen: await getTravelTime(
+        osloBodal: await getTravelTime(
           LOCATIONS.oslo,
-          LOCATIONS.loen
+          LOCATIONS.bodal
         ),
 
-        tonsbergLoen: await getTravelTime(
+        tonsbergBodal: await getTravelTime(
           LOCATIONS.tonsberg,
-          LOCATIONS.loen
+          LOCATIONS.bodal
         ),
       };
 
       setTimes(results);
+
+      setLastUpdated(
+        new Date().toLocaleTimeString(
+          "nb-NO",
+          {
+            hour: "2-digit",
+            minute: "2-digit",
+          }
+        )
+      );
     }
 
     loadTimes();
-  }, []);
 
-  return (
-    <div className="bg-white rounded-3xl p-6 shadow">
-      <h2 className="font-bold text-2xl mb-6">
-        🚗 Estimerte kjøretider
-      </h2>
-
-      <div className="grid md:grid-cols-2 gap-6">
-        <div>
-          <h3 className="font-bold text-lg mb-4">
-            🏔️ Beitostølen
-          </h3>
-
-          <div className="space-y-3">
-            <div className="border rounded-xl p-3">
-              <div>📍 Asker</div>
-              <div className="font-bold">
-                {times.askerBeito}
-              </div>
-            </div>
-
-            <div className="border rounded-xl p-3">
-              <div>📍 Oslo</div>
-              <div className="font-bold">
-                {times.osloBeito}
-              </div>
-            </div>
-
-            <div className="border rounded-xl p-3">
-              <div>📍 Tønsberg</div>
-              <div className="font-bold">
-                {times.tonsbergBeito}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div>
-          <h3 className="font-bold text-lg mb-4">
-            🏞️ Loen / Bødal
-          </h3>
-
-          <div className="space-y-3">
-            <div className="border rounded-xl p-3">
-              <div>📍 Asker</div>
-              <div className="font-bold">
-                {times.askerLoen}
-              </div>
-            </div>
-
-            <div className="border rounded-xl p-3">
-              <div>📍 Oslo</div>
-              <div className="font-bold">
-                {times.osloLoen}
-              </div>
-            </div>
-
-            <div className="border rounded-xl p-3">
-              <div>📍 Tønsberg</div>
-              <div className="font-bold">
-                {times.tonsbergLoen}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
+ 
