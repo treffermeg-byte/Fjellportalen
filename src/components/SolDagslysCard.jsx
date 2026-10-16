@@ -1,4 +1,4 @@
-import useSunTimes from "../hooks/useSunTimes";
+import useSunTimes from "../Hooks/useSunTimes";
 
 export default function SolDagslysCard() {
   const beitostolen = useSunTimes(61.25, 8.92);
