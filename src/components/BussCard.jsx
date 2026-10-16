@@ -2,22 +2,32 @@ import useBusDepartures from "../Hooks/useBusDepartures";
 
 export default function BussCard() {
   const {
-    departures: beitoTrips,
-    loading: beitoLoading,
+    departures: osloBeitoTrips,
+    loading: osloBeitoLoading,
   } = useBusDepartures(
-    59.9106,
-    10.7530,
+    59.9127, // Oslo Bussterminal
+    10.7600,
     61.249,
     8.906
   );
 
   const {
-    departures: strynTrips,
-    loading: strynLoading,
+    departures: tonsbergBeitoTrips,
+    loading: tonsbergBeitoLoading,
   } = useBusDepartures(
-    59.9106,
-    10.7530,
-    61.9045,
+    59.2675, // Tønsberg rutebilstasjon
+    10.4076,
+    61.249,
+    8.906
+  );
+
+  const {
+    departures: tonsbergStrynTrips,
+    loading: tonsbergStrynLoading,
+  } = useBusDepartures(
+    59.2675, // Tønsberg rutebilstasjon
+    10.4076,
+    61.9045, // Stryn rutebilstasjon
     6.7223
   );
 
@@ -33,7 +43,11 @@ export default function BussCard() {
     );
   }
 
-  function renderTrips(trips) {
+  function renderTrips(trips, loading) {
+    if (loading) {
+      return <div>Laster avganger...</div>;
+    }
+
     if (!trips || trips.length === 0) {
       return (
         <div className="text-gray-500">
@@ -51,12 +65,16 @@ export default function BussCard() {
           >
             <div>
               🕒 Avgang:{" "}
-              {formatTime(trip.expectedStartTime)}
+              {formatTime(
+                trip.expectedStartTime
+              )}
             </div>
 
             <div>
               🏁 Ankomst:{" "}
-              {formatTime(trip.expectedEndTime)}
+              {formatTime(
+                trip.expectedEndTime
+              )}
             </div>
 
             <div>
@@ -70,7 +88,7 @@ export default function BussCard() {
               🚌{" "}
               {trip.legs?.[0]?.line?.publicCode ||
                 trip.legs?.[0]?.line?.name ||
-                "Ukjent"}
+                "Ukjent linje"}
             </div>
           </div>
         ))}
@@ -84,31 +102,41 @@ export default function BussCard() {
         🚌 Bussavganger
       </h2>
 
-      <div className="grid md:grid-cols-2 gap-6">
+      <div className="grid md:grid-cols-3 gap-6">
         <div className="border rounded-2xl p-4">
           <h3 className="font-bold text-lg mb-4">
-            🏔️ Beitostølen
+            🏙️ Oslo Bussterminal → Beitostølen
           </h3>
 
-          {beitoLoading ? (
-            <div>Laster avganger...</div>
-          ) : (
-            renderTrips(beitoTrips)
+          {renderTrips(
+            osloBeitoTrips,
+            osloBeitoLoading
           )}
         </div>
 
         <div className="border rounded-2xl p-4">
           <h3 className="font-bold text-lg mb-4">
-            🏞️ Stryn
+            🏔️ Tønsberg → Beitostølen
           </h3>
 
-          {strynLoading ? (
-            <div>Laster avganger...</div>
-          ) : (
-            renderTrips(strynTrips)
+          {renderTrips(
+            tonsbergBeitoTrips,
+            tonsbergBeitoLoading
+          )}
+        </div>
+
+        <div className="border rounded-2xl p-4">
+          <h3 className="font-bold text-lg mb-4">
+            🏞️ Tønsberg → Stryn
+          </h3>
+
+          {renderTrips(
+            tonsbergStrynTrips,
+            tonsbergStrynLoading
           )}
         </div>
       </div>
     </div>
   );
 }
+``
