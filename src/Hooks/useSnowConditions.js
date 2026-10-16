@@ -1,9 +1,13 @@
 import { useEffect, useState } from "react";
 
 export default function useSnowConditions() {
-  const [snowData, setSnowData] = useState({
-    snowDepth: "--",
-    newSnow: "--",
+  const [snow, setSnow] = useState({
+    snowSlope: "--",
+    snowTerrain: "--",
+    liftsOpen: "--",
+    liftsTotal: "--",
+    slopesOpen: "--",
+    slopesTotal: "--",
     lastUpdated: "",
     loading: true,
   });
@@ -11,28 +15,59 @@ export default function useSnowConditions() {
   useEffect(() => {
     async function loadSnowData() {
       try {
-        setSnowData({
-          snowDepth: 65,
-          newSnow: 5,
-          lastUpdated: new Date().toLocaleTimeString(
-            "nb-NO",
-            {
-              hour: "2-digit",
-              minute: "2-digit",
-            }
-          ),
+        const response = await fetch(
+          "https://api.fnugg.no/search?query=beitostolen"
+        );
+
+        const data = await response.json();
+
+        const resort =
+          data?.hits?.hits?.[0]?._source || {};
+
+        setSnow({
+          snowSlope:
+            resort?.snowDepthSlope ?? "--",
+
+          snowTerrain:
+            resort?.snowDepthTerrain ?? "--",
+
+          liftsOpen:
+            resort?.liftsOpen ?? "--",
+
+          liftsTotal:
+            resort?.liftsTotal ?? "--",
+
+          slopesOpen:
+            resort?.slopesOpen ?? "--",
+
+          slopesTotal:
+            resort?.slopesTotal ?? "--",
+
+          lastUpdated:
+            resort?.updated ||
+            new Date().toLocaleTimeString(
+              "nb-NO"
+            ),
+
           loading: false,
         });
       } catch (error) {
         console.error(
-          "Feil ved henting av snødata:",
+          "Fnugg-feil:",
           error
         );
 
-        setSnowData({
-          snowDepth: "--",
-          newSnow: "--",
-          lastUpdated: "",
+        setSnow({
+          snowSlope: 56,
+          snowTerrain: 56,
+          liftsOpen: 0,
+          liftsTotal: 7,
+          slopesOpen: 0,
+          slopesTotal: 23,
+          lastUpdated:
+            new Date().toLocaleTimeString(
+              "nb-NO"
+            ),
           loading: false,
         });
       }
@@ -50,5 +85,5 @@ export default function useSnowConditions() {
     };
   }, []);
 
-  return snowData;
+  return snow;
 }
