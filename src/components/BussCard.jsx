@@ -21,6 +21,7 @@ export default function BussCard() {
     6.857
   );
 
+  
   function formatTime(dateTime) {
     return new Date(dateTime).toLocaleTimeString(
       "no-NO",
