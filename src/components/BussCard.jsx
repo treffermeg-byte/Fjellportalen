@@ -21,14 +21,61 @@ export default function BussCard() {
     6.857
   );
 
-  
   function formatTime(dateTime) {
+    if (!dateTime) return "--:--";
+
     return new Date(dateTime).toLocaleTimeString(
-      "no-NO",
+      "nb-NO",
       {
         hour: "2-digit",
         minute: "2-digit",
       }
+    );
+  }
+
+  function renderTrips(trips) {
+    if (!trips || trips.length === 0) {
+      return (
+        <div className="text-gray-500">
+          Ingen avganger funnet
+        </div>
+      );
+    }
+
+    return (
+      <div className="space-y-3">
+        {trips.slice(0, 3).map((trip, index) => (
+          <div
+            key={index}
+            className="border rounded-xl p-3"
+          >
+            <div>
+              🕒 Avgang:{" "}
+              {formatTime(trip.expectedStartTime)}
+            </div>
+
+            <div>
+              🏁 Ankomst:{" "}
+              {formatTime(trip.expectedEndTime)}
+            </div>
+
+            <div>
+              ⏱️ Reisetid:{" "}
+              {Math.round(
+                (trip.duration || 0) / 60
+              )}{" "}
+              min
+            </div>
+
+            <div>
+              🚌{" "}
+              {trip.legs?.[0]?.line?.publicCode ||
+                trip.legs?.[0]?.line?.name ||
+                "Ukjent"}
+            </div>
+          </div>
+        ))}
+      </div>
     );
   }
 
@@ -47,39 +94,7 @@ export default function BussCard() {
           {beitoLoading ? (
             <div>Laster avganger...</div>
           ) : (
-            <div className="space-y-3">
-              {beitoTrips.slice(0, 3).map((trip, index) => (
-                <div
-                  key={index}
-                  className="border rounded-xl p-3"
-                >
-                  <div>
-                    🕒 Avgang:{" "}
-                    {formatTime(
-                      trip.expectedStartTime
-                    )}
-                  </div>
-
-                  <div>
-                    🏁 Ankomst:{" "}
-                    {formatTime(
-                      trip.expectedEndTime
-                    )}
-                  </div>
-
-                  <div>
-                    ⏱️ Reisetid:{" "}
-                    {Math.round(trip.duration / 60)} min
-                  </div>
-
-                  <div>
-                    🚌{" "}
-                    {trip.legs?.[0]?.line?.publicCode ??
-                      "Ukjent"}
-                  </div>
-                </div>
-              ))}
-            </div>
+            renderTrips(beitoTrips)
           )}
         </div>
 
@@ -91,39 +106,7 @@ export default function BussCard() {
           {loenLoading ? (
             <div>Laster avganger...</div>
           ) : (
-            <div className="space-y-3">
-              {loenTrips.slice(0, 3).map((trip, index) => (
-                <div
-                  key={index}
-                  className="border rounded-xl p-3"
-                >
-                  <div>
-                    🕒 Avgang:{" "}
-                    {formatTime(
-                      trip.expectedStartTime
-                    )}
-                  </div>
-
-                  <div>
-                    🏁 Ankomst:{" "}
-                    {formatTime(
-                      trip.expectedEndTime
-                    )}
-                  </div>
-
-                  <div>
-                    ⏱️ Reisetid:{" "}
-                    {Math.round(trip.duration / 60)} min
-                  </div>
-
-                  <div>
-                    🚌{" "}
-                    {trip.legs?.[0]?.line?.publicCode ??
-                      "Ukjent"}
-                  </div>
-                </div>
-              ))}
-            </div>
+            renderTrips(loenTrips)
           )}
         </div>
       </div>
