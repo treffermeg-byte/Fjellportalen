@@ -24,7 +24,7 @@ export default function useSunTimes(lat, lon) {
         const data = await response.json();
 
         if (!data?.results) {
-          throw new Error("Mangler data");
+          throw new Error("Mangler data fra API");
         }
 
         const sunriseDate = new Date(data.results.sunrise);
@@ -58,7 +58,10 @@ export default function useSunTimes(lat, lon) {
           });
         }
       } catch (error) {
-        console.error("Feil ved henting av soldata:", error);
+        console.error(
+          "Feil ved henting av soldata:",
+          error
+        );
 
         if (mounted) {
           setSunTimes({
