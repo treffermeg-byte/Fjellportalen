@@ -40,10 +40,9 @@ export default function App() {
         </h1>
 
         <p className="text-slate-600 mb-6">
-          Vær, kjøretider,
-          fjelloverganger, heisstatus,
-          langrenn, drivstoff, buss,
-          kameraer og reiseinformasjon
+          Vær, kjøretider, fjelloverganger,
+          heisstatus, langrenn, drivstoff,
+          buss, kameraer og reiseinformasjon
           samlet på ett sted.
         </p>
 
@@ -66,4 +65,30 @@ export default function App() {
           />
         </div>
 
-        <div className="mb-
+        <div className="mb-6">
+          <BussCard />
+        </div>
+
+        <div className="mb-6">
+          <HeisStatusCard />
+        </div>
+
+        <div className="mb-6">
+          <DrivstoffLadingCard />
+        </div>
+
+        <div className="mb-6">
+          <LangrennCard />
+        </div>
+
+        <div className="mb-6">
+          <TravelTimesCard />
+        </div>
+
+        <div className="mb-6">
+          <FjellovergangerCard />
+        </div>
+
+        <div className="mb-6">
+          <CameraSection />
+        
