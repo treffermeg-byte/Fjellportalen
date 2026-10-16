@@ -1,10 +1,3 @@
-export default function BussCard() {
-  return (
-    <div className="bg-white rounded-3xl p-6 shadow">
-      <h2>🚌 Bussavganger virker</h2>
-    </div>
-  );
-}
 import useBusDepartures from "../Hooks/useBusDepartures";
 
 export default function BussCard() {
@@ -45,51 +38,48 @@ export default function BussCard() {
       </h2>
 
       <div className="grid md:grid-cols-2 gap-6">
-
         <div className="border rounded-2xl p-4">
           <h3 className="font-bold text-lg mb-4">
             🏔️ Beitostølen
           </h3>
 
-          {beitoLoading && (
+          {beitoLoading ? (
             <div>Laster avganger...</div>
+          ) : (
+            <div className="space-y-3">
+              {beitoTrips.slice(0, 3).map((trip, index) => (
+                <div
+                  key={index}
+                  className="border rounded-xl p-3"
+                >
+                  <div>
+                    🕒 Avgang:{" "}
+                    {formatTime(
+                      trip.expectedStartTime
+                    )}
+                  </div>
+
+                  <div>
+                    🏁 Ankomst:{" "}
+                    {formatTime(
+                      trip.expectedEndTime
+                    )}
+                  </div>
+
+                  <div>
+                    ⏱️ Reisetid:{" "}
+                    {Math.round(trip.duration / 60)} min
+                  </div>
+
+                  <div>
+                    🚌{" "}
+                    {trip.legs?.[0]?.line?.publicCode ??
+                      "Ukjent"}
+                  </div>
+                </div>
+              ))}
+            </div>
           )}
-
-          <div className="space-y-3">
-            {beitoTrips.slice(0, 3).map((trip, index) => (
-              <div
-                key={index}
-                className="border rounded-xl p-3"
-              >
-                <div>
-                  🕒 Avgang:{" "}
-                  {formatTime(
-                    trip.expectedStartTime
-                  )}
-                </div>
-
-                <div>
-                  🏁 Ankomst:{" "}
-                  {formatTime(
-                    trip.expectedEndTime
-                  )}
-                </div>
-
-                <div>
-                  ⏱️ Reisetid:{" "}
-                  {Math.round(
-                    trip.duration / 60
-                  )} min
-                </div>
-
-                <div>
-                  🚌
-                  {" "}
-                  {trip.legs?.[0]?.line?.publicCode}
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
 
         <div className="border rounded-2xl p-4">
@@ -97,47 +87,44 @@ export default function BussCard() {
             🏞️ Loen
           </h3>
 
-          {loenLoading && (
+          {loenLoading ? (
             <div>Laster avganger...</div>
+          ) : (
+            <div className="space-y-3">
+              {loenTrips.slice(0, 3).map((trip, index) => (
+                <div
+                  key={index}
+                  className="border rounded-xl p-3"
+                >
+                  <div>
+                    🕒 Avgang:{" "}
+                    {formatTime(
+                      trip.expectedStartTime
+                    )}
+                  </div>
+
+                  <div>
+                    🏁 Ankomst:{" "}
+                    {formatTime(
+                      trip.expectedEndTime
+                    )}
+                  </div>
+
+                  <div>
+                    ⏱️ Reisetid:{" "}
+                    {Math.round(trip.duration / 60)} min
+                  </div>
+
+                  <div>
+                    🚌{" "}
+                    {trip.legs?.[0]?.line?.publicCode ??
+                      "Ukjent"}
+                  </div>
+                </div>
+              ))}
+            </div>
           )}
-
-          <div className="space-y-3">
-            {loenTrips.slice(0, 3).map((trip, index) => (
-              <div
-                key={index}
-                className="border rounded-xl p-3"
-              >
-                <div>
-                  🕒 Avgang:{" "}
-                  {formatTime(
-                    trip.expectedStartTime
-                  )}
-                </div>
-
-                <div>
-                  🏁 Ankomst:{" "}
-                  {formatTime(
-                    trip.expectedEndTime
-                  )}
-                </div>
-
-                <div>
-                  ⏱️ Reisetid:{" "}
-                  {Math.round(
-                    trip.duration / 60
-                  )} min
-                </div>
-
-                <div>
-                  🚌
-                  {" "}
-                  {trip.legs?.[0]?.line?.publicCode}
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
-
       </div>
     </div>
   );
