@@ -2,32 +2,22 @@ import useBusDepartures from "../Hooks/useBusDepartures";
 
 export default function BussCard() {
   const {
-    departures: osloBeitoTrips,
-    loading: osloBeitoLoading,
+    departures: beitoTrips,
+    loading: beitoLoading,
   } = useBusDepartures(
-    59.9127, // Oslo Bussterminal
+    59.9127,
     10.7600,
     61.249,
     8.906
   );
 
   const {
-    departures: tonsbergBeitoTrips,
-    loading: tonsbergBeitoLoading,
+    departures: strynTrips,
+    loading: strynLoading,
   } = useBusDepartures(
-    59.2675, // Tønsberg rutebilstasjon
-    10.4076,
-    61.249,
-    8.906
-  );
-
-  const {
-    departures: tonsbergStrynTrips,
-    loading: tonsbergStrynLoading,
-  } = useBusDepartures(
-    59.2675, // Tønsberg rutebilstasjon
-    10.4076,
-    61.9045, // Stryn rutebilstasjon
+    59.9127,
+    10.7600,
+    61.9045,
     6.7223
   );
 
@@ -43,11 +33,7 @@ export default function BussCard() {
     );
   }
 
-  function renderTrips(trips, loading) {
-    if (loading) {
-      return <div>Laster avganger...</div>;
-    }
-
+  function renderTrips(trips) {
     if (!trips || trips.length === 0) {
       return (
         <div className="text-gray-500">
@@ -99,44 +85,42 @@ export default function BussCard() {
   return (
     <div className="bg-white rounded-3xl p-6 shadow">
       <h2 className="font-bold text-2xl mb-6">
-        🚌 Bussavganger
+        🚌 Bussplanlegger
       </h2>
 
-      <div className="grid md:grid-cols-3 gap-6">
-        <div className="border rounded-2xl p-4">
+      <div className="grid md:grid-cols-2 gap-6">
+
+        <div className="border rounded-2xl p-5">
           <h3 className="font-bold text-lg mb-4">
-            🏙️ Oslo Bussterminal → Beitostølen
+            🏔️ Oslo Bussterminal → Beitostølen
           </h3>
 
-          {renderTrips(
-            osloBeitoTrips,
-            osloBeitoLoading
+          {beitoLoading ? (
+            <div>Laster avganger...</div>
+          ) : (
+            renderTrips(beitoTrips)
           )}
-        </div>
 
-        <div className="border rounded-2xl p-4">
-          <h3 className="font-bold text-lg mb-4">
-            🏔️ Tønsberg → Beitostølen
+          <a
+            href="https://www.nor-way.no"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-4 inline-block className="font-bold text-lg mb-4">
+            🏞️ Oslo Bussterminal → Stryn
           </h3>
 
-          {renderTrips(
-            tonsbergBeitoTrips,
-            tonsbergBeitoLoading
+          {strynLoading ? (
+            <div>Laster avganger...</div>
+          ) : (
+            renderTrips(strynTrips)
           )}
-        </div>
 
-        <div className="border rounded-2xl p-4">
-          <h3 className="font-bold text-lg mb-4">
-            🏞️ Tønsberg → Stryn
-          </h3>
+          <a
+            href="https://www.vy.no"
+            target="_blank"
+   </div>
 
-          {renderTrips(
-            tonsbergStrynTrips,
-            tonsbergStrynLoading
-          )}
-        </div>
       </div>
     </div>
   );
 }
-``
