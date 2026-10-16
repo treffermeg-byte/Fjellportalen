@@ -1,29 +1,8 @@
 import { useState } from "react";
-import useBusDepartures from "../Hooks/useBusDepartures";
 
 export default function BussCard() {
   const [destination, setDestination] =
     useState("beitostolen");
-
-  const [travelDate, setTravelDate] =
-    useState("");
-
-  const [travelTime, setTravelTime] =
-    useState("08:00");
-
-  const {
-    departures,
-    loading,
-    searchTrips,
-  } = useBusDepartures();
-
-  async function handleSearch() {
-    await searchTrips(
-      destination,
-      travelDate,
-      travelTime
-    );
-  }
 
   const bookingUrl =
     destination === "beitostolen"
@@ -82,10 +61,6 @@ export default function BussCard() {
 
           <input
             type="date"
-            value={travelDate}
-            onChange={(e) =>
-              setTravelDate(e.target.value)
-            }
             className="w-full border rounded-xl p-3 mt-1"
           />
         </div>
@@ -97,12 +72,22 @@ export default function BussCard() {
 
           <input
             type="time"
-            value={travelTime}
-            onChange={(e) =>
-              setTravelTime(e.target.value)
-            }
+            defaultValue="08:00"
             className="w-full border rounded-xl p-3 mt-1"
           />
         </div>
 
-    
+        <button
+          className="w-full bg-green-600 text-white rounded-xl p-3 font-semibold"
+        >
+          🔍 Finn avganger
+        </button>
+
+        {bookingUrl}
+          {bookingText}
+        </a>
+
+      </div>
+    </div>
+  );
+}
