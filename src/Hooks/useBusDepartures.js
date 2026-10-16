@@ -1,116 +1,52 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
-export default function useBusDepartures(
-  fromLat,
-  fromLon,
-  toLat,
-  toLon
-) {
+export default function useBusDepartures() {
   const [departures, setDepartures] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    async function fetchTrips() {
-      try {
-        setLoading(true);
+  async function searchTrips(destination) {
+    try {
+      setLoading(true);
 
-        const query = {
-          query: `
-            {
-              trip(
-                from: {
-                  coordinates: {
-                    latitude: ${fromLat}
-                    longitude: ${fromLon}
-                  }
-                }
-                to: {
-                  coordinates: {
-                    latitude: ${toLat}
-                    longitude: ${toLon}
-                  }
-                }
-                numTripPatterns: 10
-              ) {
-                tripPatterns {
-                  expectedStartTime
-                  expectedEndTime
-                  duration
-
-                  legs {
-                    mode
-
-                    line {
-                      publicCode
-                      name
-                    }
-                  }
-                }
-              }
-            }
-          `,
-        };
-
-        const response = await fetch(
-          "https://api.entur.io/journey-planner/v3/graphql",
+      // Midlertidig eksempeldata
+      if (destination === "beitostolen") {
+        setDepartures([
           {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              "ET-Client-Name": "fjellportalen-app",
-            },
-            body: JSON.stringify(query),
-          }
-        );
-
-        if (!response.ok) {
-          throw new Error(
-            `HTTP-feil: ${response.status}`
-          );
-        }
-
-        const result = await response.json();
-
-        const trips =
-          result?.data?.trip?.tripPatterns || [];
-
-        console.log("Entur trips:", trips);
-
-        const busTrips = trips.filter(
-          (trip) =>
-            trip.legs &&
-            trip.legs.length > 0
-        );
-
-        setDepartures(
-          busTrips.length > 0
-            ? busTrips
-            : trips
-        );
-      } catch (error) {
-        console.error(
-          "Feil ved henting av bussavganger:",
-          error
-        );
-
-        setDepartures([]);
-      } finally {
-        setLoading(false);
+            departure: "08:15",
+            arrival: "11:40",
+            operator: "NOR-WAY NW150",
+          },
+          {
+            departure: "12:15",
+            arrival: "15:50",
+            operator: "NOR-WAY NW150",
+          },
+        ]);
+      } else {
+        setDepartures([
+          {
+            departure: "09:00",
+            arrival: "17:05",
+            operator: "Vy Ekspress VY146",
+          },
+          {
+            departure: "13:00",
+            arrival: "21:10",
+            operator: "Vy Ekspress VY146",
+          },
+        ]);
       }
+    } catch (error) {
+      console.error(error);
+      setDepartures([]);
+    } finally {
+      setLoading(false);
     }
-
-    fetchTrips();
-
-    const interval = setInterval(
-      fetchTrips,
-      5 * 60 * 1000
-    );
-
-    return () => clearInterval(interval);
-  }, [fromLat, fromLon, toLat, toLon]);
+  }
 
   return {
     departures,
     loading,
+    searchTrips,
   };
 }
