@@ -1,4 +1,3 @@
-import WeatherCard from "./components/WeatherCard";
 import ForecastCard from "./components/ForecastCard";
 import TravelTimesCard from "./components/TravelTimesCard";
 import FjellovergangerCard from "./components/FjellovergangerCard";
@@ -36,20 +35,6 @@ export default function App() {
           <HytteklarCard
             beitoWeather={beitoWeather}
             loenWeather={loenWeather}
-          />
-        </div>
-
-        <div className="grid md:grid-cols-2 gap-6 mb-6">
-          <WeatherCard
-            title="🏔️ Beitostølen"
-            temp={beitoWeather.temp}
-            wind={beitoWeather.wind}
-          />
-
-          <WeatherCard
-            title="🏞️ Loen / Bødal"
-            temp={loenWeather.temp}
-            wind={loenWeather.wind}
           />
         </div>
 
