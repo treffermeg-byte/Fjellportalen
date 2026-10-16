@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import useSunTimes from "../Hooks/useSunTimes";
 
 export default function HytteklarCard({
@@ -14,8 +15,47 @@ export default function HytteklarCard({
     6.857
   );
 
+  const [liftStatus, setLiftStatus] =
+    useState(null);
+
+  useEffect(() => {
+    async function loadStatus() {
+      try {
+        const response = await fetch(
+          "https://api.fnugg.no/get/resort/15"
+        );
+
+        const data =
+          await response.json();
+
+        setLiftStatus({
+          resortOpen:
+            data?._source?.resort_open,
+
+          liftsOpen:
+            data?._source?.lifts?.open ?? 0,
+
+          liftsTotal:
+            data?._source?.lifts?.count ?? 0,
+
+          slopesOpen:
+            data?._source?.slopes?.open ?? 0,
+
+          slopesTotal:
+            data?._source?.slopes?.count ?? 0,
+        });
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
+    loadStatus();
+  }, []);
+
   return (
     <div className="grid lg:grid-cols-2 gap-6">
+
+      {/* BEITOSTØLEN */}
 
       <div className="bg-gradient-to-r from-blue-600 to-indigo-700 text-white rounded-3xl p-6 shadow">
 
@@ -25,6 +65,12 @@ export default function HytteklarCard({
             <h2 className="text-3xl font-bold">
               🎿 Beitostølen
             </h2>
+
+            <div className="mt-2 font-semibold">
+              {liftStatus?.resortOpen
+                ? "🟢 Åpent"
+                : "🔴 Stengt"}
+            </div>
           </div>
 
           <div className="text-right">
@@ -46,7 +92,7 @@ export default function HytteklarCard({
               💨 Vind
             </div>
 
-            <div className="text-2xl font-bold">
+            <div className="text-xl font-bold">
               {beitoWeather?.wind ?? "--"} m/s
             </div>
           </div>
@@ -56,7 +102,7 @@ export default function HytteklarCard({
               🌅 Soloppgang
             </div>
 
-            <div className="text-2xl font-bold">
+            <div className="text-xl font-bold">
               {beitoSun?.sunrise ?? "--:--"}
             </div>
           </div>
@@ -66,24 +112,40 @@ export default function HytteklarCard({
               🌇 Solnedgang
             </div>
 
-            <div className="text-2xl font-bold">
+            <div className="text-xl font-bold">
               {beitoSun?.sunset ?? "--:--"}
             </div>
           </div>
 
           <div className="bg-white/10 rounded-2xl p-3">
             <div className="text-xs opacity-80">
-              🚠 Heisstatus
+              🚠 Heiser
             </div>
 
-            <div className="text-lg font-bold">
-              Se heisstatus under
+            <div className="text-xl font-bold">
+              {liftStatus?.liftsOpen ?? "--"}
+              /
+              {liftStatus?.liftsTotal ?? "--"}
+            </div>
+          </div>
+
+          <div className="bg-white/10 rounded-2xl p-3 col-span-2">
+            <div className="text-xs opacity-80">
+              ⛷️ Nedfarter
+            </div>
+
+            <div className="text-xl font-bold">
+              {liftStatus?.slopesOpen ?? "--"}
+              /
+              {liftStatus?.slopesTotal ?? "--"}
             </div>
           </div>
 
         </div>
 
       </div>
+
+      {/* LOEN */}
 
       <div className="bg-gradient-to-r from-emerald-600 to-teal-700 text-white rounded-3xl p-6 shadow">
 
@@ -93,6 +155,10 @@ export default function HytteklarCard({
             <h2 className="text-3xl font-bold">
               🏞️ Loen
             </h2>
+
+            <div className="mt-2 font-semibold">
+              🟢 Skylift
+            </div>
           </div>
 
           <div className="text-right">
@@ -114,7 +180,7 @@ export default function HytteklarCard({
               💨 Vind
             </div>
 
-            <div className="text-2xl font-bold">
+            <div className="text-xl font-bold">
               {loenWeather?.wind ?? "--"} m/s
             </div>
           </div>
@@ -124,7 +190,7 @@ export default function HytteklarCard({
               🌅 Soloppgang
             </div>
 
-            <div className="text-2xl font-bold">
+            <div className="text-xl font-bold">
               {loenSun?.sunrise ?? "--:--"}
             </div>
           </div>
@@ -134,18 +200,28 @@ export default function HytteklarCard({
               🌇 Solnedgang
             </div>
 
-            <div className="text-2xl font-bold">
+            <div className="text-xl font-bold">
               {loenSun?.sunset ?? "--:--"}
             </div>
           </div>
 
           <div className="bg-white/10 rounded-2xl p-3">
             <div className="text-xs opacity-80">
-              🚠 Loen Skylift
+              🚠 Driftstid
             </div>
 
             <div className="text-lg font-bold">
-              Se heisstatus under
+              09:00-22:00
+            </div>
+          </div>
+
+          <div className="bg-white/10 rounded-2xl p-3 col-span-2">
+            <div className="text-xs opacity-80">
+              🚡 Siste retur
+            </div>
+
+            <div className="text-xl font-bold">
+              22:30
             </div>
           </div>
 
