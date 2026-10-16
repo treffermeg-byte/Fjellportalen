@@ -1,107 +1,81 @@
-import { useEffect, useState } from "react";
-
-const LOCATIONS = {
-  asker: [10.435, 59.835],
-  oslo: [10.752, 59.913],
-  tonsberg: [10.407, 59.267],
-
-  beitostolen: [8.906, 61.249],
-
-  bodal: [6.754, 61.846],
-};
-
-async function getTravelTime(start, end) {
-  try {
-    const response = await fetch(
-      `https://router.project-osrm.org/route/v1/driving/${start[0]},${start[1]};${end[0]},${end[1]}?overview=false`
-    );
-
-    const data = await response.json();
-
-    if (!data.routes?.length) {
-      return "Ukjent";
-    }
-
-    const seconds = data.routes[0].duration;
-
-    const hours = Math.floor(seconds / 3600);
-
-    const minutes = Math.round(
-      (seconds % 3600) / 60
-    );
-
-    return `${hours} t ${minutes} min`;
-  } catch (error) {
-    console.error(
-      "Feil ved henting av kjøretid:",
-      error
-    );
-
-    return "Feil";
-  }
-}
+import useDriveTimes from "../Hooks/useDriveTimes";
 
 export default function TravelTimesCard() {
-  const [lastUpdated, setLastUpdated] =
-    useState("");
+  const { times, lastUpdated } =
+    useDriveTimes();
 
-  const [times, setTimes] = useState({
-    askerBeito: "Laster...",
-    osloBeito: "Laster...",
-    tonsbergBeito: "Laster...",
+  function RouteCard({
+    place,
+    time,
+  }) {
+    return (
+      <div className="border rounded-xl p-3">
+        <div>📍 {place}</div>
 
-    askerBodal: "Laster...",
-    osloBodal: "Laster...",
-    tonsbergBodal: "Laster...",
-  });
+        <div className="font-bold">
+          {time}
+        </div>
+      </div>
+    );
+  }
 
-  useEffect(() => {
-    async function loadTimes() {
-      const results = {
-        askerBeito: await getTravelTime(
-          LOCATIONS.asker,
-          LOCATIONS.beitostolen
-        ),
+  return (
+    <div className="bg-white rounded-3xl p-6 shadow">
+      <h2 className="font-bold text-2xl mb-6">
+        🚗 Estimerte kjøretider
+      </h2>
 
-        osloBeito: await getTravelTime(
-          LOCATIONS.oslo,
-          LOCATIONS.beitostolen
-        ),
+      <div className="grid md:grid-cols-2 gap-6">
+        <div>
+          <h3 className="font-bold text-lg mb-4">
+            🏔️ Beitostølen
+          </h3>
 
-        tonsbergBeito: await getTravelTime(
-          LOCATIONS.tonsberg,
-          LOCATIONS.beitostolen
-        ),
+          <div className="space-y-3">
+            <RouteCard
+              place="Asker"
+              time={times.askerBeito}
+            />
 
-        askerBodal: await getTravelTime(
-          LOCATIONS.asker,
-          LOCATIONS.bodal
-        ),
+            <RouteCard
+              place="Oslo"
+              time={times.osloBeito}
+            />
 
-        osloBodal: await getTravelTime(
-          LOCATIONS.oslo,
-          LOCATIONS.bodal
-        ),
+            <RouteCard
+              place="Tønsberg"
+              time={times.tonsbergBeito}
+            />
+          </div>
+        </div>
 
-        tonsbergBodal: await getTravelTime(
-          LOCATIONS.tonsberg,
-          LOCATIONS.bodal
-        ),
-      };
+        <div>
+          <h3 className="font-bold text-lg mb-4">
+            🏞️ Bødal
+          </h3>
 
-      setTimes(results);
+          <div className="space-y-3">
+            <RouteCard
+              place="Asker"
+              time={times.askerBodal}
+            />
 
-      setLastUpdated(
-        new Date().toLocaleTimeString(
-          "nb-NO",
-          {
-            hour: "2-digit",
-            minute: "2-digit",
-          }
-        )
-      );
-    }
+            <RouteCard
+              place="Oslo"
+              time={times.osloBodal}
+            />
 
-    loadTimes();
+            <RouteCard
+              place="Tønsberg"
+              time={times.tonsbergBodal}
+            />
+          </div>
+        </div>
+      </div>
 
- 
+      <div className="text-xs text-gray-500 mt-6">
+        Sist oppdatert: {lastUpdated}
+      </div>
+    </div>
+  );
+}
