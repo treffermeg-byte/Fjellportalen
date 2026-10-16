@@ -52,10 +52,10 @@ export default function useSunTimes(lat, lon) {
 
     fetchSunTimes();
 
-    const interval = setInterval(
-      fetchSunTimes,
-      24 * 60 * 60 * 1000
-    );
+const interval = setInterval(
+  fetchSunTimes,
+  60 * 60 * 1000
+);
 
     return () => clearInterval(interval);
   }, [lat, lon]);
