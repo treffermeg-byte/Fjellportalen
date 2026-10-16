@@ -5,11 +5,12 @@ export default function useSunTimes(lat, lon) {
     sunrise: "--:--",
     sunset: "--:--",
     dayLength: "--",
+    loading: true,
   });
 
-  const [loading, setLoading] = useState(true);
-
   useEffect(() => {
+    let mounted = true;
+
     async function fetchSunTimes() {
       try {
         const response = await fetch(
@@ -17,51 +18,56 @@ export default function useSunTimes(lat, lon) {
         );
 
         if (!response.ok) {
-          throw new Error(
-            "Kunne ikke hente soloppgang og solnedgang"
-          );
+          throw new Error("Kunne ikke hente soldata");
         }
 
         const data = await response.json();
 
-        const sunrise = new Intl.DateTimeFormat("nb-NO", {
+        if (!data?.results) {
+          throw new Error("Mangler data");
+        }
+
+        const sunriseDate = new Date(data.results.sunrise);
+        const sunsetDate = new Date(data.results.sunset);
+
+        const sunrise = sunriseDate.toLocaleTimeString("nb-NO", {
           hour: "2-digit",
           minute: "2-digit",
           timeZone: "Europe/Oslo",
-        }).format(new Date(data.results.sunrise));
+        });
 
-        const sunset = new Intl.DateTimeFormat("nb-NO", {
+        const sunset = sunsetDate.toLocaleTimeString("nb-NO", {
           hour: "2-digit",
           minute: "2-digit",
           timeZone: "Europe/Oslo",
-        }).format(new Date(data.results.sunset));
+        });
 
-        const dayLengthSeconds =
-          Number(data.results.day_length) || 0;
+        const diffMs = sunsetDate - sunriseDate;
 
-        const hours = Math.floor(dayLengthSeconds / 3600);
+        const hours = Math.floor(diffMs / 3600000);
         const minutes = Math.floor(
-          (dayLengthSeconds % 3600) / 60
+          (diffMs % 3600000) / 60000
         );
 
-        setSunTimes({
-          sunrise,
-          sunset,
-          dayLength: `${hours}t ${minutes}m`,
-        });
+        if (mounted) {
+          setSunTimes({
+            sunrise,
+            sunset,
+            dayLength: `${hours}t ${minutes}m`,
+            loading: false,
+          });
+        }
       } catch (error) {
-        console.error(
-          "Feil ved henting av soldata:",
-          error
-        );
+        console.error("Feil ved henting av soldata:", error);
 
-        setSunTimes({
-          sunrise: "--:--",
-          sunset: "--:--",
-          dayLength: "--",
-        });
-      } finally {
-        setLoading(false);
+        if (mounted) {
+          setSunTimes({
+            sunrise: "--:--",
+            sunset: "--:--",
+            dayLength: "--",
+            loading: false,
+          });
+        }
       }
     }
 
@@ -72,11 +78,11 @@ export default function useSunTimes(lat, lon) {
       60 * 60 * 1000
     );
 
-    return () => clearInterval(interval);
+    return () => {
+      mounted = false;
+      clearInterval(interval);
+    };
   }, [lat, lon]);
 
-  return {
-    ...sunTimes,
-    loading,
-  };
+  return sunTimes;
 }
