@@ -14,12 +14,13 @@ export default function HytteklarCard({
       </h2>
 
       <div className="grid md:grid-cols-2 gap-6">
+
         <div className="border rounded-2xl p-5">
           <h3 className="font-bold text-xl mb-4">
             🎿 Beitostølen
           </h3>
 
-          <div className="space-y-2">
+          <div className="space-y-3 text-xl">
             <div>
               🌦️ Temperatur: {beitoWeather?.temp ?? "--"}°C
             </div>
@@ -46,6 +47,7 @@ export default function HytteklarCard({
 
             <div className="flex items-center gap-2">
               <span>🏔️ Valdresflye</span>
+
               <span className="text-green-600 font-semibold">
                 🟢 Åpen
               </span>
@@ -55,10 +57,10 @@ export default function HytteklarCard({
 
         <div className="border rounded-2xl p-5">
           <h3 className="font-bold text-xl mb-4">
-            🏞️ Loen / Bødal
+            🏞️ Bødal
           </h3>
 
-          <div className="space-y-2">
+          <div className="space-y-3 text-xl">
             <div>
               🌦️ Temperatur: {loenWeather?.temp ?? "--"}°C
             </div>
@@ -81,12 +83,14 @@ export default function HytteklarCard({
 
             <div className="flex items-center gap-2">
               <span>❄️ Strynefjellet</span>
+
               <span className="text-green-600 font-semibold">
                 🟢 Åpen
               </span>
             </div>
           </div>
         </div>
+
       </div>
     </div>
   );
