@@ -9,9 +9,6 @@ export default function useBusDepartures(
   const [departures, setDepartures] = useState([]);
   const [loading, setLoading] = useState(true);
 
-console.log(departures);
-console.log(loading);
-
   useEffect(() => {
     async function fetchTrips() {
       try {
@@ -19,38 +16,38 @@ console.log(loading);
 
         const query = {
           query: `
-          {
-            trip(
-              from: {
-                coordinates: {
-                  latitude: ${fromLat}
-                  longitude: ${fromLon}
+            {
+              trip(
+                from: {
+                  coordinates: {
+                    latitude: ${fromLat}
+                    longitude: ${fromLon}
+                  }
                 }
-              }
-              to: {
-                coordinates: {
-                  latitude: ${toLat}
-                  longitude: ${toLon}
+                to: {
+                  coordinates: {
+                    latitude: ${toLat}
+                    longitude: ${toLon}
+                  }
                 }
-              }
-              numTripPatterns: 10
-            ) {
-              tripPatterns {
-                expectedStartTime
-                expectedEndTime
-                duration
+                numTripPatterns: 10
+              ) {
+                tripPatterns {
+                  expectedStartTime
+                  expectedEndTime
+                  duration
 
-                legs {
-                  mode
+                  legs {
+                    mode
 
-                  line {
-                    publicCode
-                    name
+                    line {
+                      publicCode
+                      name
+                    }
                   }
                 }
               }
             }
-          }
           `,
         };
 
@@ -66,26 +63,44 @@ console.log(loading);
           }
         );
 
+        if (!response.ok) {
+          throw new Error(
+            `HTTP-feil: ${response.status}`
+          );
+        }
+
         const result = await response.json();
 
         const trips =
           result?.data?.trip?.tripPatterns || [];
 
-        const busOnlyTrips = trips.filter(
+        console.log("Entur trips:", trips);
+
+        const busTrips = trips.filter(
           (trip) =>
             trip.legs &&
             trip.legs.length > 0 &&
             trip.legs.every(
-              (leg) => leg.mode === "bus"
+              (leg) =>
+                leg.mode &&
+                leg.mode.toUpperCase() === "BUS"
             )
         );
 
-        setDepartures(busOnlyTrips);
+        console.log("Bus only:", busTrips);
+
+        // Hvis bussfilteret gir tomt resultat,
+        // vis alle avganger midlertidig
+        setDepartures(
+          busTrips.length > 0 ? busTrips : trips
+        );
       } catch (error) {
         console.error(
           "Feil ved henting av bussavganger:",
           error
         );
+
+        setDepartures([]);
       } finally {
         setLoading(false);
       }
@@ -101,5 +116,8 @@ console.log(loading);
     return () => clearInterval(interval);
   }, [fromLat, fromLon, toLat, toLon]);
 
-  return { departures, loading };
+  return {
+    departures,
+    loading,
+  };
 }
