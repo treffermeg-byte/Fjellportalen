@@ -1,168 +1,222 @@
 import useSunTimes from "../Hooks/useSunTimes";
-import useSnowConditions from "../Hooks/useSnowConditions";
 
 export default function HytteklarCard({
   beitoWeather,
   loenWeather,
 }) {
   const beitoSun = useSunTimes(61.25, 8.92);
-  const loenSun = useSunTimes(61.87, 6.85);
 
-  const snow = useSnowConditions();
+  const temp =
+    beitoWeather?.temp ?? 0;
+
+  const score =
+    temp >= 5 ? 92 :
+    temp >= 0 ? 84 :
+    temp >= -10 ? 71 :
+    55;
+
+  const status =
+    score >= 85
+      ? {
+          text: "🟢 Hytteklar",
+          color: "bg-green-100 text-green-700",
+        }
+      : score >= 70
+        ? {
+            text: "🟡 Vurder forhold",
+            color: "bg-yellow-100 text-yellow-700",
+          }
+        : {
+            text: "🔴 Krevende forhold",
+            color: "bg-red-100 text-red-700",
+          };
 
   return (
-    <div className="bg-gradient-to-r from-green-50 to-emerald-100 border border-green-200 rounded-3xl p-8 shadow-lg">
-      <h2 className="font-bold text-4xl mb-8">
-        ✅ Hytteklar?
-      </h2>
+    <div className="space-y-6">
 
-      <div className="grid md:grid-cols-2 gap-8">
+      {/* HERO */}
+      <div className="bg-gradient-to-r from-blue-600 to-indigo-700 text-white rounded-3xl p-8 shadow">
 
-        <div className="bg-white rounded-3xl p-6 shadow">
-          <div className="flex items-center gap-3 mb-6">
-            <span className="text-4xl">🟢</span>
+        <div className="flex justify-between items-start">
+          <div>
+            <p className="text-blue-100 text-sm">
+              HOVEDDESTINASJON
+            </p>
 
-            <div>
-              <h3 className="font-bold text-3xl">
-                🎿 Beitostølen
-              </h3>
+            <h2 className="text-4xl font-bold mt-1">
+              🎿 Beitostølen
+            </h2>
 
-              <div className="text-green-700 font-semibold text-lg">
-                Gode forhold
-              </div>
+            <div
+              className={`inline-block px-4 py-2 rounded-full mt-4 font-semibold ${status.color}`}
+            >
+              {status.text}
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-4 mb-6">
-
-            <div className="bg-blue-50 rounded-2xl p-4">
-              <div className="text-gray-500">
-                Temperatur
-              </div>
-
-              <div className="text-5xl font-bold">
-                {beitoWeather?.temp ?? "--"}°
-              </div>
+          <div className="text-right">
+            <div className="text-blue-100">
+              Temperatur
             </div>
 
-            <div className="bg-slate-50 rounded-2xl p-4">
-              <div className="text-gray-500">
-                Vind
-              </div>
-
-              <div className="text-5xl font-bold">
-                {beitoWeather?.wind ?? "--"}
-              </div>
-
-              <div className="text-lg">
-                m/s
-              </div>
+            <div className="text-8xl font-black leading-none">
+              {beitoWeather?.temp ?? "--"}°
             </div>
-
-          </div>
-
-          <div className="space-y-3 text-xl">
-
-            <div>
-              ❄️ Snødybde: {snow.snowDepth} cm
-            </div>
-
-            <div>
-              🌨️ Nysnø siste døgn: {snow.newSnow} cm
-            </div>
-
-            <div>
-              🌅 Soloppgang: {beitoSun?.sunrise ?? "--:--"}
-            </div>
-
-            <div>
-              🌇 Solnedgang: {beitoSun?.sunset ?? "--:--"}
-            </div>
-
-            <div>
-              🚠 Heiser: 0 / 7 åpne
-            </div>
-
-            <div>
-              ⛷️ Nedfarter: 0 / 23 åpne
-            </div>
-
-            <div className="font-semibold text-green-700">
-              🏔️ Valdresflye • Åpen
-            </div>
-
           </div>
         </div>
 
-        <div className="bg-white rounded-3xl p-6 shadow">
-          <div className="flex items-center gap-3 mb-6">
-            <span className="text-4xl">🟢</span>
+        <div className="grid md:grid-cols-3 gap-4 mt-8">
 
-            <div>
-              <h3 className="font-bold text-3xl">
-                🏞️ Bødal
-              </h3>
-
-              <div className="text-green-700 font-semibold text-lg">
-                Fine forhold
-              </div>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-2 gap-4 mb-6">
-
-            <div className="bg-blue-50 rounded-2xl p-4">
-              <div className="text-gray-500">
-                Temperatur
-              </div>
-
-              <div className="text-5xl font-bold">
-                {loenWeather?.temp ?? "--"}°
-              </div>
+          <div className="bg-white/10 rounded-2xl p-4">
+            <div className="text-sm text-blue-100">
+              Vind
             </div>
 
-            <div className="bg-slate-50 rounded-2xl p-4">
-              <div className="text-gray-500">
-                Vind
-              </div>
-
-              <div className="text-5xl font-bold">
-                {loenWeather?.wind ?? "--"}
-              </div>
-
-              <div className="text-lg">
+            <div className="text-3xl font-bold">
+              {beitoWeather?.wind ?? "--"}
+              <span className="text-lg ml-1">
                 m/s
-              </div>
+              </span>
             </div>
-
           </div>
 
-          <div className="space-y-3 text-xl">
-
-            <div>
-              🌅 Soloppgang: {loenSun?.sunrise ?? "--:--"}
+          <div className="bg-white/10 rounded-2xl p-4">
+            <div className="text-sm text-blue-100">
+              Soloppgang
             </div>
 
-            <div>
-              🌇 Solnedgang: {loenSun?.sunset ?? "--:--"}
+            <div className="text-3xl font-bold">
+              {beitoSun?.sunrise ?? "--:--"}
+            </div>
+          </div>
+
+          <div className="bg-white/10 rounded-2xl p-4">
+            <div className="text-sm text-blue-100">
+              Solnedgang
             </div>
 
-            <div>
-              🚠 Loen Skylift: Åpen
+            <div className="text-3xl font-bold">
+              {beitoSun?.sunset ?? "--:--"}
             </div>
+          </div>
 
-            <div className="font-semibold text-green-700">
-              ❄️ Strynefjellet • Åpen
-            </div>
+        </div>
+      </div>
 
+      {/* KPI-RAD */}
+      <div className="grid md:grid-cols-4 gap-4">
+
+        <div className="bg-white rounded-3xl p-6 shadow text-center">
+          <div className="text-slate-500 text-sm">
+            Hytteklar-score
+          </div>
+
+          <div className="text-6xl font-black mt-2">
+            {score}
+          </div>
+
+          <div className="text-slate-500">
+            /100
+          </div>
+        </div>
+
+        <div className="bg-white rounded-3xl p-6 shadow text-center">
+          <div className="text-slate-500 text-sm">
+            Snømengde
+          </div>
+
+          <div className="text-5xl font-black mt-2">
+            65
+          </div>
+
+          <div className="text-slate-500">
+            cm
+          </div>
+        </div>
+
+        <div className="bg-white rounded-3xl p-6 shadow text-center">
+          <div className="text-slate-500 text-sm">
+            Heiser åpne
+          </div>
+
+          <div className="text-5xl font-black mt-2">
+            7
+          </div>
+
+          <div className="text-green-600 font-semibold">
+            av 7
+          </div>
+        </div>
+
+        <div className="bg-white rounded-3xl p-6 shadow text-center">
+          <div className="text-slate-500 text-sm">
+            Nedfarter åpne
+          </div>
+
+          <div className="text-5xl font-black mt-2">
+            23
+          </div>
+
+          <div className="text-green-600 font-semibold">
+            av 23
           </div>
         </div>
 
       </div>
 
-      <div className="text-sm text-gray-600 mt-6">
-        Snødata sist oppdatert: {snow.lastUpdated}
+      {/* DESTINASJONER */}
+      <div className="grid md:grid-cols-2 gap-6">
+
+        <div className="bg-white rounded-3xl p-6 shadow">
+          <h3 className="text-2xl font-bold mb-4">
+            🎿 Beitostølen
+          </h3>
+
+          <div className="space-y-2">
+            <div>
+              🌡️ Temperatur:
+              {" "}
+              {beitoWeather?.temp ?? "--"}°C
+            </div>
+
+            <div>
+              💨 Vind:
+              {" "}
+              {beitoWeather?.wind ?? "--"} m/s
+            </div>
+
+            <div>
+              🏔️ Valdresflye: 🟢 Åpen
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-white rounded-3xl p-6 shadow">
+          <h3 className="text-2xl font-bold mb-4">
+            🏞️ Bødal
+          </h3>
+
+          <div className="space-y-2">
+            <div>
+              🌡️ Temperatur:
+              {" "}
+              {loenWeather?.temp ?? "--"}°C
+            </div>
+
+            <div>
+              💨 Vind:
+              {" "}
+              {loenWeather?.wind ?? "--"} m/s
+            </div>
+
+            <div>
+              🚠 Loen Skylift: 🟢 Åpen
+            </div>
+          </div>
+        </div>
+
       </div>
+
     </div>
   );
 }
