@@ -1,86 +1,39 @@
+import { useState } from "react";
 import useBusDepartures from "../Hooks/useBusDepartures";
 
 export default function BussCard() {
-  const {
-    departures: beitoTrips,
-    loading: beitoLoading,
-  } = useBusDepartures(
-    59.9127,
-    10.7600,
-    61.249,
-    8.906
-  );
+  const [destination, setDestination] =
+    useState("beitostolen");
+
+  const [travelDate, setTravelDate] =
+    useState("");
+
+  const [travelTime, setTravelTime] =
+    useState("08:00");
 
   const {
-    departures: strynTrips,
-    loading: strynLoading,
-  } = useBusDepartures(
-    59.9127,
-    10.7600,
-    61.9045,
-    6.7223
-  );
+    departures,
+    loading,
+    searchTrips,
+  } = useBusDepartures();
 
-  function formatTime(dateTime) {
-    if (!dateTime) return "--:--";
-
-    return new Date(dateTime).toLocaleTimeString(
-      "nb-NO",
-      {
-        hour: "2-digit",
-        minute: "2-digit",
-      }
+  async function handleSearch() {
+    await searchTrips(
+      destination,
+      travelDate,
+      travelTime
     );
   }
 
-  function renderTrips(trips) {
-    if (!trips || trips.length === 0) {
-      return (
-        <div className="text-gray-500">
-          Ingen avganger funnet
-        </div>
-      );
-    }
+  const bookingUrl =
+    destination === "beitostolen"
+      ? "https://www.nor-way.no"
+      : "https://www.vy.no";
 
-    return (
-      <div className="space-y-3">
-        {trips.slice(0, 3).map((trip, index) => (
-          <div
-            key={index}
-            className="border rounded-xl p-3"
-          >
-            <div>
-              🕒 Avgang:{" "}
-              {formatTime(
-                trip.expectedStartTime
-              )}
-            </div>
-
-            <div>
-              🏁 Ankomst:{" "}
-              {formatTime(
-                trip.expectedEndTime
-              )}
-            </div>
-
-            <div>
-              ⏱️ Reisetid:{" "}
-              {Math.round(
-                (trip.duration || 0) / 60
-              )} min
-            </div>
-
-            <div>
-              🚌{" "}
-              {trip.legs?.[0]?.line?.publicCode ||
-                trip.legs?.[0]?.line?.name ||
-                "Ukjent linje"}
-            </div>
-          </div>
-        ))}
-      </div>
-    );
-  }
+  const bookingText =
+    destination === "beitostolen"
+      ? "🎫 Bestill hos NOR-WAY"
+      : "🎫 Bestill hos Vy";
 
   return (
     <div className="bg-white rounded-3xl p-6 shadow">
@@ -88,39 +41,68 @@ export default function BussCard() {
         🚌 Bussplanlegger
       </h2>
 
-      <div className="grid md:grid-cols-2 gap-6">
+      <div className="space-y-4">
 
-        <div className="border rounded-2xl p-5">
-          <h3 className="font-bold text-lg mb-4">
-            🏔️ Oslo Bussterminal → Beitostølen
-          </h3>
+        <div>
+          <label className="font-semibold">
+            Fra
+          </label>
 
-          {beitoLoading ? (
-            <div>Laster avganger...</div>
-          ) : (
-            renderTrips(beitoTrips)
-          )}
+          <div className="mt-1 border rounded-xl p-3 bg-slate-50">
+            Oslo Bussterminal
+          </div>
+        </div>
 
-          <a
-            href="https://www.nor-way.no"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-4 inline-block className="font-bold text-lg mb-4">
-            🏞️ Oslo Bussterminal → Stryn
-          </h3>
+        <div>
+          <label className="font-semibold">
+            Til
+          </label>
 
-          {strynLoading ? (
-            <div>Laster avganger...</div>
-          ) : (
-            renderTrips(strynTrips)
-          )}
+          <select
+            value={destination}
+            onChange={(e) =>
+              setDestination(e.target.value)
+            }
+            className="w-full border rounded-xl p-3 mt-1"
+          >
+            <option value="beitostolen">
+              Beitostølen
+            </option>
 
-          <a
-            href="https://www.vy.no"
-            target="_blank"
-   </div>
+            <option value="stryn">
+              Stryn
+            </option>
+          </select>
+        </div>
 
-      </div>
-    </div>
-  );
-}
+        <div>
+          <label className="font-semibold">
+            📅 Avreise dato
+          </label>
+
+          <input
+            type="date"
+            value={travelDate}
+            onChange={(e) =>
+              setTravelDate(e.target.value)
+            }
+            className="w-full border rounded-xl p-3 mt-1"
+          />
+        </div>
+
+        <div>
+          <label className="font-semibold">
+            🕒 Avreise klokkeslett
+          </label>
+
+          <input
+            type="time"
+            value={travelTime}
+            onChange={(e) =>
+              setTravelTime(e.target.value)
+            }
+            className="w-full border rounded-xl p-3 mt-1"
+          />
+        </div>
+
+    
