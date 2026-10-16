@@ -29,11 +29,11 @@ export default function HytteklarCard({
             </div>
 
             <div>
-              🌅 Soloppgang: {beitoSun.sunrise}
+              🌅 Soloppgang: {beitoSun.sunrise ?? "--:--"}
             </div>
 
             <div>
-              🌇 Solnedgang: {beitoSun.sunset}
+              🌇 Solnedgang: {beitoSun.sunset ?? "--:--"}
             </div>
 
             <div>
@@ -68,11 +68,11 @@ export default function HytteklarCard({
             </div>
 
             <div>
-              🌅 Soloppgang: {loenSun.sunrise}
+              🌅 Soloppgang: {loenSun.sunrise ?? "--:--"}
             </div>
 
             <div>
-              🌇 Solnedgang: {loenSun.sunset}
+              🌇 Solnedgang: {loenSun.sunset ?? "--:--"}
             </div>
 
             <div>
