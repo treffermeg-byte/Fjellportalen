@@ -12,13 +12,13 @@ export default function BussCard() {
   );
 
   const {
-    departures: loenTrips,
-    loading: loenLoading,
+    departures: strynTrips,
+    loading: strynLoading,
   } = useBusDepartures(
     59.9106,
     10.7530,
-    61.873,
-    6.857
+    61.9045,
+    6.7223
   );
 
   function formatTime(dateTime) {
@@ -62,54 +62,4 @@ export default function BussCard() {
             <div>
               ⏱️ Reisetid:{" "}
               {Math.round(
-                (trip.duration || 0) / 60
-              )}{" "}
-              min
-            </div>
-
-            <div>
-              🚌{" "}
-              {trip.legs?.[0]?.line?.publicCode ||
-                trip.legs?.[0]?.line?.name ||
-                "Ukjent"}
-            </div>
-          </div>
-        ))}
-      </div>
-    );
-  }
-
-  return (
-    <div className="bg-white rounded-3xl p-6 shadow">
-      <h2 className="font-bold text-2xl mb-6">
-        🚌 Bussavganger
-      </h2>
-
-      <div className="grid md:grid-cols-2 gap-6">
-        <div className="border rounded-2xl p-4">
-          <h3 className="font-bold text-lg mb-4">
-            🏔️ Beitostølen
-          </h3>
-
-          {beitoLoading ? (
-            <div>Laster avganger...</div>
-          ) : (
-            renderTrips(beitoTrips)
-          )}
-        </div>
-
-        <div className="border rounded-2xl p-4">
-          <h3 className="font-bold text-lg mb-4">
-            🏞️ Loen
-          </h3>
-
-          {loenLoading ? (
-            <div>Laster avganger...</div>
-          ) : (
-            renderTrips(loenTrips)
-          )}
-        </div>
-      </div>
-    </div>
-  );
-}
+                (trip.duration || 0) / 
