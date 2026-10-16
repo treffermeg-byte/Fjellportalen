@@ -10,16 +10,6 @@ export default function BussCard() {
   const [travelTime, setTravelTime] =
     useState("08:00");
 
-  const bookingUrl =
-    destination === "beitostolen"
-      ? "https://www.nor-way.no"
-      : "https://www.vy.no";
-
-  const bookingText =
-    destination === "beitostolen"
-      ? "🎫 Bestill hos NOR-WAY"
-      : "🎫 Bestill hos Vy";
-
   return (
     <div className="bg-white rounded-3xl p-6 shadow">
       <h2 className="font-bold text-2xl mb-6">
@@ -91,14 +81,10 @@ export default function BussCard() {
         </div>
 
         <button
-          className="w-full bg-green-600 text-white rounded-xl p-3 font-semibold"
+          className="w-full bg-green-600 text-white rounded-xl p-3"
         >
           🔍 Finn avganger
         </button>
-
-        {bookingUrl}
-          {bookingText}
-        </a>
 
       </div>
     </div>
