@@ -79,20 +79,13 @@ export default function useBusDepartures(
         const busTrips = trips.filter(
           (trip) =>
             trip.legs &&
-            trip.legs.length > 0 &&
-            trip.legs.every(
-              (leg) =>
-                leg.mode &&
-                leg.mode.toUpperCase() === "BUS"
-            )
+            trip.legs.length > 0
         );
 
-        console.log("Bus only:", busTrips);
-
-        // Hvis bussfilteret gir tomt resultat,
-        // vis alle avganger midlertidig
         setDepartures(
-          busTrips.length > 0 ? busTrips : trips
+          busTrips.length > 0
+            ? busTrips
+            : trips
         );
       } catch (error) {
         console.error(
