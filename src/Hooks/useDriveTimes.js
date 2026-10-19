@@ -16,13 +16,9 @@ async function getTravelTime(start, end) {
       `https://router.project-osrm.org/route/v1/driving/${start[0]},${start[1]};${end[0]},${end[1]}?overview=false`
     );
 
-    
     const data = await response.json();
 
-    if (
-      !data.routes ||
-      data.routes.length === 0
-    ) {
+    if (!data.routes || data.routes.length === 0) {
       return {
         duration: "Ukjent",
         distance: "-- km",
@@ -33,10 +29,7 @@ async function getTravelTime(start, end) {
 
     const seconds = route.duration;
 
-    const hours = Math.floor(
-      seconds / 3600
-    );
-
+    const hours = Math.floor(seconds / 3600);
     const minutes = Math.round(
       (seconds % 3600) / 60
     );
@@ -126,11 +119,10 @@ export default function useDriveTimes() {
           LOCATIONS.bodal
         ),
 
-        tonsbergBodal:
-          await getTravelTime(
-            LOCATIONS.tonsberg,
-            LOCATIONS.bodal
-          ),
+        tonsbergBodal: await getTravelTime(
+          LOCATIONS.tonsberg,
+          LOCATIONS.bodal
+        ),
       };
 
       setTimes(results);
