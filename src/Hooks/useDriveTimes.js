@@ -16,6 +16,7 @@ async function getTravelTime(start, end) {
       `https://router.project-osrm.org/route/v1/driving/${start[0]},${start[1]};${end[0]},${end[1]}?overview=false`
     );
 
+    
     const data = await response.json();
 
     if (
