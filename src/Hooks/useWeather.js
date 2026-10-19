@@ -10,12 +10,7 @@ export default function useWeather(lat, lon) {
     async function fetchWeather() {
       try {
         const response = await fetch(
-          `https://api.met.no/weatherapi/locationforecast/2.0/compact?lat=${lat}&lon=${lon}`,
-          {
-            headers: {
-              "User-Agent": "Fjellportalen/1.0",
-            },
-          }
+          `https://api.met.no/weatherapi/locationforecast/2.0/compact?lat=${lat}&lon=${lon}`
         );
 
         if (!response.ok) {
@@ -30,8 +25,12 @@ export default function useWeather(lat, lon) {
           data.properties.timeseries[0].data.instant.details;
 
         setWeather({
-          temp: Math.round(current.air_temperature),
-          wind: Math.round(current.wind_speed),
+          temp: Math.round(
+            current.air_temperature
+          ),
+          wind: Math.round(
+            current.wind_speed
+          ),
         });
       } catch (error) {
         console.error(
