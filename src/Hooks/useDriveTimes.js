@@ -1,3 +1,15 @@
+import { useEffect, useState } from "react";
+
+const LOCATIONS = {
+  asker: [10.435, 59.835],
+  oslo: [10.752, 59.913],
+  tonsberg: [10.407, 59.267],
+
+  beitostolen: [8.906, 61.249],
+
+  bodal: [6.754, 61.846],
+};
+
 async function getTravelTime(start, end) {
   try {
     const response = await fetch(
@@ -6,7 +18,10 @@ async function getTravelTime(start, end) {
 
     const data = await response.json();
 
-    if (!data.routes || data.routes.length === 0) {
+    if (
+      !data.routes ||
+      data.routes.length === 0
+    ) {
       return {
         duration: "Ukjent",
         distance: "-- km",
@@ -17,7 +32,10 @@ async function getTravelTime(start, end) {
 
     const seconds = route.duration;
 
-    const hours = Math.floor(seconds / 3600);
+    const hours = Math.floor(
+      seconds / 3600
+    );
+
     const minutes = Math.round(
       (seconds % 3600) / 60
     );
@@ -42,4 +60,84 @@ async function getTravelTime(start, end) {
     };
   }
 }
-``
+
+export default function useDriveTimes() {
+  const [times, setTimes] = useState({
+    askerBeito: {},
+    osloBeito: {},
+    tonsbergBeito: {},
+
+    askerBodal: {},
+    osloBodal: {},
+    tonsbergBodal: {},
+  });
+
+  const [lastUpdated, setLastUpdated] =
+    useState("");
+
+  useEffect(() => {
+    async function loadTimes() {
+      const results = {
+        askerBeito: await getTravelTime(
+          LOCATIONS.asker,
+          LOCATIONS.beitostolen
+        ),
+
+        osloBeito: await getTravelTime(
+          LOCATIONS.oslo,
+          LOCATIONS.beitostolen
+        ),
+
+        tonsbergBeito:
+          await getTravelTime(
+            LOCATIONS.tonsberg,
+            LOCATIONS.beitostolen
+          ),
+
+        askerBodal: await getTravelTime(
+          LOCATIONS.asker,
+          LOCATIONS.bodal
+        ),
+
+        osloBodal: await getTravelTime(
+          LOCATIONS.oslo,
+          LOCATIONS.bodal
+        ),
+
+        tonsbergBodal:
+          await getTravelTime(
+            LOCATIONS.tonsberg,
+            LOCATIONS.bodal
+          ),
+      };
+
+      setTimes(results);
+
+      setLastUpdated(
+        new Date().toLocaleTimeString(
+          "nb-NO",
+          {
+            hour: "2-digit",
+            minute: "2-digit",
+          }
+        )
+      );
+    }
+
+    loadTimes();
+
+    const interval = setInterval(
+      loadTimes,
+      15 * 60 * 1000
+    );
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
+
+  return {
+    times,
+    lastUpdated,
+  };
+}
