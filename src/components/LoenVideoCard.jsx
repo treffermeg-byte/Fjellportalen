@@ -7,17 +7,17 @@ export default function LoenVideoCard() {
       </h2>
 
       <p className="text-slate-600 mb-4">
-        Video fra Loen Skylift.
+        Video fra Loen Skylift og området rundt.
       </p>
 
-      <div className="aspect-video rounded-2xl overflow-hidden border mb-4">
+      <div className="aspect-video overflow-hidden rounded-2xl border mb-4">
         <iframe
-          width="100%"
-          height="100%"
+          className="w-full h-full"
           src="https://www.youtube.com/embed/v7kOOs-Rx4Y"
           title="Loen Skylift Video"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
+         >
         ▶ Åpne på YouTube
       </a>
 
