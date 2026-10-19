@@ -2,12 +2,13 @@ import ForecastCard from "./components/ForecastCard";
 import HytteklarCard from "./components/HytteklarCard";
 import FjellovergangerCard from "./components/FjellovergangerCard";
 import HeisStatusCard from "./components/HeisStatusCard";
-import LangrennCard from "./components/LangrennCard";
 import BussCard from "./components/BussCard";
+import LangrennCard from "./components/LangrennCard";
 import DrivstoffLadingCard from "./components/DrivstoffLadingCard";
 import TravelTimesCard from "./components/TravelTimesCard";
 import CameraSection from "./components/CameraSection";
 import PanoramaCard from "./components/PanoramaCard";
+import LoenVideoCard from "./components/LoenVideoCard";
 
 import useWeather from "./Hooks/useWeather";
 import useForecast from "./Hooks/useForecast";
@@ -71,6 +72,9 @@ export default function App() {
           <FjellovergangerCard />
         </div>
 
+        <div className="mb-6">
+          <HeisStatusCard />
+        </div>
 
         <div className="mb-6">
           <BussCard />
@@ -117,6 +121,10 @@ export default function App() {
         </div>
 
         <div className="mb-6">
+          <LoenVideoCard />
+        </div>
+
+        <div className="mb-6">
           <PanoramaCard />
         </div>
 
@@ -124,4 +132,3 @@ export default function App() {
     </div>
   );
 }
-`
