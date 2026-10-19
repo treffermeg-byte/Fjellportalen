@@ -11,7 +11,6 @@ export default function TravelTimesCard() {
   }) {
     return (
       <div className="border rounded-xl p-4">
-
         <div className="font-semibold mb-2">
           📍 {place}
         </div>
@@ -20,7 +19,7 @@ export default function TravelTimesCard() {
           🚗 {route?.duration ?? "--"}
         </div>
 
-        <div className="text-slate-600">
+        <div className="text-slate-600 mb-3">
           📏 {route?.distance ?? "--"}
         </div>
 
@@ -28,8 +27,7 @@ export default function TravelTimesCard() {
           href={mapsUrl}
           target="_blank"
           rel="noopener noreferrer"
-          classssName="bg-white rounded-3xl p-6 shadow">
-
+          className="text-blue-600 hover:l p-6 shadow">
       <h2 className="font-bold text-2xl mb-6">
         🚗 Reisetider
       </h2>
@@ -37,7 +35,6 @@ export default function TravelTimesCard() {
       <div className="grid md:grid-cols-2 gap-6">
 
         <div>
-
           <h3 className="font-bold text-lg mb-4">
             🏔️ Beitostølen
           </h3>
@@ -63,11 +60,9 @@ export default function TravelTimesCard() {
             />
 
           </div>
-
         </div>
 
         <div>
-
           <h3 className="font-bold text-lg mb-4">
             🏞️ Bødal
           </h3>
@@ -93,7 +88,6 @@ export default function TravelTimesCard() {
             />
 
           </div>
-
         </div>
 
       </div>
@@ -101,7 +95,7 @@ export default function TravelTimesCard() {
       <div className="text-xs text-gray-500 mt-6">
         Sist oppdatert: {lastUpdated}
       </div>
-
     </div>
   );
 }
+``
