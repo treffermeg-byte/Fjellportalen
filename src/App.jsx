@@ -7,6 +7,7 @@ import LangrennCard from "./components/LangrennCard";
 import DrivstoffLadingCard from "./components/DrivstoffLadingCard";
 import TravelTimesCard from "./components/TravelTimesCard";
 import CameraSection from "./components/CameraSection";
+import BeitoVideoCard from "./components/BeitoVideoCard";
 import PanoramaCard from "./components/PanoramaCard";
 
 
@@ -120,6 +121,17 @@ export default function App() {
           <CameraSection />
         </div>
 
+        <div className="mb-6">
+  <BeitoVideoCard />
+</div>
+
+<div className="mb-6">
+  <CameraSection />
+</div>
+
+<div className="mb-6">
+  <PanoramaCard />
+</div>
 
         <div className="mb-6">
           <PanoramaCard />
