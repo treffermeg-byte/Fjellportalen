@@ -14,7 +14,7 @@ export default function FjellovergangerCard() {
           className="relative h-56 rounded-3xl overflow-hidden block"
           style={{
             backgroundImage:
-              "url('/images/valdresflye.jpg')",
+              "url('/valdresflye.jpg')",
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
@@ -43,7 +43,7 @@ export default function FjellovergangerCard() {
           className="relative h-56 rounded-3xl overflow-hidden block"
           style={{
             backgroundImage:
-              "url('/images/strynfjellet.jpg')",
+              "url('/strynfjellet.jpg')",
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
