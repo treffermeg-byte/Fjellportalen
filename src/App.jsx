@@ -20,6 +20,7 @@ export default function App() {
     8.906
   );
 
+  
   const loenWeather = useWeather(
     61.873,
     6.857
