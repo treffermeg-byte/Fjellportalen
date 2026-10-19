@@ -9,20 +9,15 @@ export default function BeitoVideoCard() {
         Video fra Beitostølen og området rundt.
       </p>
 
-      <div className="aspect-video overflow-hidden rounded-2xl border">
+      <div className="aspect-video overflow-hidden rounded-2xl border mb-4">
         <iframe
-          className="w-full h-full"
           src="https://www.youtube.com/embed/FtIu4-7VYMs"
           title="Beitostølen Video"
-          allowFullScreen
-            target="_blank"
-          rel="noopener noreferrer"
-          className="inline-block bg-red-600 text-white px-4 py-2 rounded-xl hover:bg-red-700"
-        >
-          Åpne på YouTube
-        </a>
-      </div>
+          className="w-full h-full"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web4 py-2 rounded-xl hover:bg-red-700"
+      >
+        Åpne på YouTube
+      </a>
     </div>
   );
 }
-`
