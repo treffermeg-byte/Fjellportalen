@@ -11,6 +11,7 @@ export default function TravelTimesCard() {
   }) {
     return (
       <div className="border rounded-xl p-4">
+
         <div className="font-semibold mb-2">
           📍 {place}
         </div>
@@ -27,7 +28,8 @@ export default function TravelTimesCard() {
           href={mapsUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-blue-600 hover:l p-6 shadow">
+          className="text-blue-600 hover:xl p-6 shadow">
+
       <h2 className="font-bold text-2xl mb-6">
         🚗 Reisetider
       </h2>
@@ -35,6 +37,7 @@ export default function TravelTimesCard() {
       <div className="grid md:grid-cols-2 gap-6">
 
         <div>
+
           <h3 className="font-bold text-lg mb-4">
             🏔️ Beitostølen
           </h3>
@@ -44,25 +47,27 @@ export default function TravelTimesCard() {
             <RouteCard
               place="Asker"
               route={times.askerBeito}
-              mapsUrl="https://www.google.com/maps/dir/Asker/Beitost%C3%B8len"
+              mapsUrl="https://www.google.com/maps/dir/Asker/Beitostølen"
             />
 
             <RouteCard
               place="Oslo"
               route={times.osloBeito}
-              mapsUrl="https://www.google.com/maps/dir/Oslo/Beitost%C3%B8len"
+              mapsUrl="https://www.google.com/maps/dir/Oslo/Beitostølen"
             />
 
             <RouteCard
               place="Tønsberg"
               route={times.tonsbergBeito}
-              mapsUrl="https://www.google.com/maps/dir/T%C3%B8nsberg/Beitost%C3%B8len"
+              mapsUrl="https://www.google.com/maps/dir/Tønsberg/Beitostølen"
             />
 
           </div>
+
         </div>
 
         <div>
+
           <h3 className="font-bold text-lg mb-4">
             🏞️ Bødal
           </h3>
@@ -72,22 +77,23 @@ export default function TravelTimesCard() {
             <RouteCard
               place="Asker"
               route={times.askerBodal}
-              mapsUrl="https://www.google.com/maps/dir/Asker/B%C3%B8dal"
+              mapsUrl="https://www.google.com/maps/dir/Asker/Bødal"
             />
 
             <RouteCard
               place="Oslo"
               route={times.osloBodal}
-              mapsUrl="https://www.google.com/maps/dir/Oslo/B%C3%B8dal"
+              mapsUrl="https://www.google.com/maps/dir/Oslo/Bødal"
             />
 
             <RouteCard
               place="Tønsberg"
               route={times.tonsbergBodal}
-              mapsUrl="https://www.google.com/maps/dir/T%C3%B8nsberg/B%C3%B8dal"
+              mapsUrl="https://www.google.com/maps/dir/Tønsberg/Bødal"
             />
 
           </div>
+
         </div>
 
       </div>
@@ -95,7 +101,7 @@ export default function TravelTimesCard() {
       <div className="text-xs text-gray-500 mt-6">
         Sist oppdatert: {lastUpdated}
       </div>
+
     </div>
   );
 }
-``
