@@ -28,20 +28,19 @@ export default function useForecast(lat, lon) {
     async function fetchForecast() {
       try {
         const response = await fetch(
-          `https://api.met.no/weatherapi/locationforecast/2.0/compact?lat=${lat}&lon=${lon}`,
-          {
-            headers: {
-              "User-Agent": "Fjellportalen/1.0",
-            },
-          }
+          `https://api.met.no/weatherapi/locationforecast/2.0/compact?lat=${lat}&lon=${lon}`
         );
 
         if (!response.ok) {
-          throw new Error("Kunne ikke hente prognose");
+          throw new Error(
+            `HTTP-feil: ${response.status}`
+          );
         }
 
         const data = await response.json();
-        const timeseries = data.properties.timeseries;
+
+        const timeseries =
+          data?.properties?.timeseries ?? [];
 
         const dailyForecasts = [];
 
@@ -51,7 +50,7 @@ export default function useForecast(lat, lon) {
             day * 24 + 24
           );
 
-          if (dayData.length === 0) {
+          if (!dayData.length) {
             continue;
           }
 
@@ -65,19 +64,23 @@ export default function useForecast(lat, lon) {
               item.data.instant.details.wind_speed
           );
 
-          const precipitation = dayData.reduce(
-            (sum, item) =>
-              sum +
-              (
-                item.data.next_1_hours?.details
-                  ?.precipitation_amount ?? 0
-              ),
-            0
-          );
+          const precipitation =
+            dayData.reduce(
+              (sum, item) =>
+                sum +
+                (
+                  item.data.next_1_hours?.details
+                    ?.precipitation_amount ?? 0
+                ),
+              0
+            );
 
           const midday =
             dayData[
-              Math.min(12, dayData.length - 1)
+              Math.min(
+                12,
+                dayData.length - 1
+              )
             ];
 
           const symbolCode =
@@ -101,18 +104,25 @@ export default function useForecast(lat, lon) {
 
           const estimatedSnow =
             maxTemp <= 0
-              ? Math.round(precipitation)
+              ? Math.round(
+                  precipitation
+                )
               : 0;
 
           dailyForecasts.push({
             day: new Date(
               midday.time
-            ).toLocaleDateString("no-NO", {
-              weekday: "short",
-            }),
+            ).toLocaleDateString(
+              "no-NO",
+              {
+                weekday: "short",
+              }
+            ),
 
             icon:
-              weatherIcons[symbolCode] || "⛅",
+              weatherIcons[
+                symbolCode
+              ] || "⛅",
 
             symbolCode,
 
@@ -126,11 +136,14 @@ export default function useForecast(lat, lon) {
                 precipitation * 10
               ) / 10,
 
-            newSnow: estimatedSnow,
+            newSnow:
+              estimatedSnow,
           });
         }
 
-        setForecast(dailyForecasts);
+        setForecast(
+          dailyForecasts
+        );
       } catch (error) {
         console.error(
           "Feil ved henting av prognose:",
@@ -148,7 +161,8 @@ export default function useForecast(lat, lon) {
       15 * 60 * 1000
     );
 
-    return () => clearInterval(interval);
+    return () =>
+      clearInterval(interval);
   }, [lat, lon]);
 
   return forecast;
