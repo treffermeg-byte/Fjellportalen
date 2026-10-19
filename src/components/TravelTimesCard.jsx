@@ -11,7 +11,7 @@ function RouteCard({ place, route, mapsUrl }) {
         🚗 {route?.duration ?? "--"}
       </div>
 
-      <div className="text-slate-600 mb-3">
+      <div className="text-slate-600 mb-2">
         📏 {route?.distance ?? "--"}
       </div>
 
@@ -19,7 +19,7 @@ function RouteCard({ place, route, mapsUrl }) {
         href={mapsUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="text-blue-600 hover:underline textpdated } = useDriveTimes();
+        className="text-blue-600 hover:underline text-dated } = useDriveTimes();
 
   return (
     <div className="bg-white rounded-3xl p-6 shadow">
