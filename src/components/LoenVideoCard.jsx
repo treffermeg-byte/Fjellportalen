@@ -11,13 +11,14 @@ export default function LoenVideoCard() {
 
       <div className="aspect-video overflow-hidden rounded-2xl border mb-4">
         <iframe
-          width="100%"
-          height="100%"
           src="https://www.youtube.com/embed/v7kOOs-Rx4Y"
           title="Loen Skylift Video"
+          className="w-full h-full"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-          className="w-full h-full
+          allowr:bg-red-700"
+      >
+        Åpne på YouTube
+      </a>
     </div>
   );
 }
