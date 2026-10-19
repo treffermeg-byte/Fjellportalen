@@ -10,7 +10,6 @@ import CameraSection from "./components/CameraSection";
 import BeitoVideoCard from "./components/BeitoVideoCard";
 import PanoramaCard from "./components/PanoramaCard";
 
-
 import useWeather from "./Hooks/useWeather";
 import useForecast from "./Hooks/useForecast";
 
@@ -20,7 +19,6 @@ export default function App() {
     8.906
   );
 
-  
   const loenWeather = useWeather(
     61.873,
     6.857
@@ -96,7 +94,6 @@ export default function App() {
 
         <div className="mb-6">
           <div className="bg-white rounded-3xl p-6 shadow">
-
             <h2 className="text-2xl font-bold mb-3">
               💧 Stenging av vann i Bødal
             </h2>
@@ -112,9 +109,8 @@ export default function App() {
               rel="noopener noreferrer"
               className="inline-block bg-blue-600 text-white px-4 py-2 rounded-xl hover:bg-blue-700"
             >
-              ▶ Se video
+              Se video
             </a>
-
           </div>
         </div>
 
@@ -123,16 +119,8 @@ export default function App() {
         </div>
 
         <div className="mb-6">
-  <BeitoVideoCard />
-</div>
-
-<div className="mb-6">
-  <CameraSection />
-</div>
-
-<div className="mb-6">
-  <PanoramaCard />
-</div>
+          <BeitoVideoCard />
+        </div>
 
         <div className="mb-6">
           <PanoramaCard />
