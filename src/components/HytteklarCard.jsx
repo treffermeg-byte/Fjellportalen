@@ -52,10 +52,16 @@ export default function HytteklarCard({
     loadStatus();
   }, []);
 
+  const beitoStatusText =
+    liftStatus?.resortOpen
+      ? "🟢 Åpen"
+      : "🔴 Stengt";
+
+  const loenStatusText =
+    "🟢 Åpen";
+
   return (
     <div className="grid lg:grid-cols-2 gap-6">
-
-      {/* BEITOSTØLEN */}
 
       <div className="bg-gradient-to-r from-blue-600 to-indigo-700 text-white rounded-3xl p-6 shadow">
 
@@ -67,9 +73,7 @@ export default function HytteklarCard({
             </h2>
 
             <div className="mt-2 font-semibold">
-              {liftStatus?.resortOpen
-                ? "🟢 Åpent"
-                : "🔴 Stengt"}
+              🚠 Heiser {beitoStatusText}
             </div>
           </div>
 
@@ -119,7 +123,7 @@ export default function HytteklarCard({
 
           <div className="bg-white/10 rounded-2xl p-3">
             <div className="text-xs opacity-80">
-              🚠 Heiser
+              🚠 Heiser åpne
             </div>
 
             <div className="text-xl font-bold">
@@ -131,7 +135,7 @@ export default function HytteklarCard({
 
           <div className="bg-white/10 rounded-2xl p-3 col-span-2">
             <div className="text-xs opacity-80">
-              ⛷️ Nedfarter
+              ⛷️ Nedfarter åpne
             </div>
 
             <div className="text-xl font-bold">
@@ -145,8 +149,6 @@ export default function HytteklarCard({
 
       </div>
 
-      {/* LOEN */}
-
       <div className="bg-gradient-to-r from-emerald-600 to-teal-700 text-white rounded-3xl p-6 shadow">
 
         <div className="flex justify-between items-start mb-6">
@@ -157,7 +159,7 @@ export default function HytteklarCard({
             </h2>
 
             <div className="mt-2 font-semibold">
-              🟢 Skylift
+              🚠 Skylift {loenStatusText}
             </div>
           </div>
 
@@ -207,17 +209,17 @@ export default function HytteklarCard({
 
           <div className="bg-white/10 rounded-2xl p-3">
             <div className="text-xs opacity-80">
-              🚠 Driftstid
+              🚠 Skylift
             </div>
 
             <div className="text-lg font-bold">
-              09:00-22:00
+              {loenStatusText}
             </div>
           </div>
 
           <div className="bg-white/10 rounded-2xl p-3 col-span-2">
             <div className="text-xs opacity-80">
-              🚡 Siste retur
+              🚡 Skylift siste retur
             </div>
 
             <div className="text-xl font-bold">
@@ -232,3 +234,4 @@ export default function HytteklarCard({
     </div>
   );
 }
+``
