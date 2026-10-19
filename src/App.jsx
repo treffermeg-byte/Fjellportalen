@@ -119,12 +119,13 @@ export default function App() {
         </div>
 
         <div className="mb-6">
+          <PanoramaCard />
+        </div>
+        
+        <div className="mb-6">
           <BeitoVideoCard />
         </div>
 
-        <div className="mb-6">
-          <PanoramaCard />
-        </div>
 
       </div>
     </div>
