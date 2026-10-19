@@ -14,7 +14,7 @@ export default function TravelTimesCard() {
           🚗 {route?.duration ?? "--"}
         </div>
 
-        <div className="text-slate-600 mb-3">
+        <div className="text-slate-600">
           📏 {route?.distance ?? "--"}
         </div>
 
@@ -28,6 +28,7 @@ export default function TravelTimesCard() {
       </h2>
 
       <div className="grid md:grid-cols-2 gap-6">
+
         <div>
           <h3 className="font-bold text-lg mb-4">
             🏔️ Beitostølen
@@ -37,19 +38,19 @@ export default function TravelTimesCard() {
             <RouteCard
               place="Asker"
               route={times.askerBeito}
-              mapsUrl="https://www.google.com/maps/dir/Asker/Beitostølen"
+              mapsUrl="https://www.google.com/maps/dir/Asker/Beitost%C3%B8len"
             />
 
             <RouteCard
               place="Oslo"
               route={times.osloBeito}
-              mapsUrl="https://www.google.com/maps/dir/Oslo/Beitostølen"
+              mapsUrl="https://www.google.com/maps/dir/Oslo/Beitost%C3%B8len"
             />
 
             <RouteCard
               place="Tønsberg"
               route={times.tonsbergBeito}
-              mapsUrl="https://www.google.com/maps/dir/Tønsberg/Beitostølen"
+              mapsUrl="https://www.google.com/maps/dir/T%C3%B8nsberg/Beitost%C3%B8len"
             />
           </div>
         </div>
@@ -63,22 +64,23 @@ export default function TravelTimesCard() {
             <RouteCard
               place="Asker"
               route={times.askerBodal}
-              mapsUrl="https://www.google.com/maps/dir/Asker/Bødal"
+              mapsUrl="https://www.google.com/maps/dir/Asker/B%C3%B8dal"
             />
 
             <RouteCard
               place="Oslo"
               route={times.osloBodal}
-              mapsUrl="https://www.google.com/maps/dir/Oslo/Bødal"
+              mapsUrl="https://www.google.com/maps/dir/Oslo/B%C3%B8dal"
             />
 
             <RouteCard
               place="Tønsberg"
               route={times.tonsbergBodal}
-              mapsUrl="https://www.google.com/maps/dir/Tønsberg/Bødal"
+              mapsUrl="https://www.google.com/maps/dir/T%C3%B8nsberg/B%C3%B8dal"
             />
           </div>
         </div>
+
       </div>
 
       <div className="text-xs text-gray-500 mt-6">
@@ -87,3 +89,4 @@ export default function TravelTimesCard() {
     </div>
   );
 }
+``
