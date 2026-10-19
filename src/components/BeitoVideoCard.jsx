@@ -14,7 +14,16 @@ export default function BeitoVideoCard() {
           src="https://www.youtube.com/embed/FtIu4-7VYMs"
           title="Beitostølen Video"
           className="w-full h-full"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web4 py-2 rounded-xl hover:bg-red-700"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+        />
+      </div>
+
+      <a
+        href="https://www.youtube.com/watch?v=FtIu4-7VYMs"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-block bg-red-600 text-white px-4 py-2 rounded-xl hover:bg-red-700"
       >
         Åpne på YouTube
       </a>
