@@ -1,7 +1,6 @@
 export default function LoenVideoCard() {
   return (
     <div className="bg-white rounded-3xl p-6 shadow">
-
       <h2 className="text-2xl font-bold mb-3">
         📹 Loen Skylift Video
       </h2>
@@ -15,13 +14,12 @@ export default function LoenVideoCard() {
           className="w-full h-full"
           src="https://www.youtube.com/embed/v7kOOs-Rx4Y"
           title="Loen Skylift Video"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
-         >
-        ▶ Åpne på YouTube
+       referrer"
+        className="inline-block bg-red-600 text-white px-4 py-2 rounded-xl hover:bg-red-700"
+      >
+        Åpne på YouTube
       </a>
-
     </div>
   );
 }
-``
