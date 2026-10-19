@@ -1,92 +1,49 @@
-import { useState } from "react";
-
 export default function BussCard() {
-  const [destination, setDestination] =
-    useState("beitostolen");
-
-  const [travelDate, setTravelDate] =
-    useState("");
-
-  const [travelTime, setTravelTime] =
-    useState("08:00");
-
   return (
     <div className="bg-white rounded-3xl p-6 shadow">
-      <h2 className="font-bold text-2xl mb-6">
+
+      <h2 className="font-bold text-2xl mb-4">
         🚌 Bussplanlegger
       </h2>
 
-      <div className="space-y-4">
+      <p className="text-slate-600 mb-6">
+        Søk etter buss og kollektivtransport hos Entur.
+      </p>
 
-        <div>
-          <label className="font-semibold">
-            Fra
-          </label>
+      <div className="grid md:grid-cols-2 gap-4">
 
-          <div className="border rounded-xl p-3 mt-1 bg-slate-50">
-            Oslo Bussterminal
-          </div>
-        </div>
-
-        <div>
-          <label className="font-semibold">
-            Til
-          </label>
-
-          <select
-            value={destination}
-            onChange={(e) =>
-              setDestination(e.target.value)
-            }
-            className="w-full border rounded-xl p-3 mt-1"
-          >
-            <option value="beitostolen">
-              Beitostølen
-            </option>
-
-            <option value="stryn">
-              Stryn
-            </option>
-          </select>
-        </div>
-
-        <div>
-          <label className="font-semibold">
-            📅 Avreise dato
-          </label>
-
-          <input
-            type="date"
-            value={travelDate}
-            onChange={(e) =>
-              setTravelDate(e.target.value)
-            }
-            className="w-full border rounded-xl p-3 mt-1"
-          />
-        </div>
-
-        <div>
-          <label className="font-semibold">
-            🕒 Avreise klokkeslett
-          </label>
-
-          <input
-            type="time"
-            value={travelTime}
-            onChange={(e) =>
-              setTravelTime(e.target.value)
-            }
-            className="w-full border rounded-xl p-3 mt-1"
-          />
-        </div>
-
-        <button
-          className="w-full bg-green-600 text-white rounded-xl p-3"
+        <a
+          href="https://entur.no"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="block border rounded-2xl p-4 hover:bg-slate-50"
         >
-          🔍 Finn avganger
-        </button>
+          <div className="font-bold text-lg">
+            🎿 Oslo → Beitostølen
+          </div>
+
+          <div className="text-slate-600 mt-1">
+            Søk reise hos Entur
+          </div>
+        </a>
+
+        <a
+          href="https://entur.no"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="block border rounded-2xl p-4 hover:bg-slate-50"
+        >
+          <div className="font-bold text-lg">
+            🏞️ Oslo → Loen / Stryn
+          </div>
+
+          <div className="text-slate-600 mt-1">
+            Søk reise hos Entur
+          </div>
+        </a>
 
       </div>
+
     </div>
   );
 }
