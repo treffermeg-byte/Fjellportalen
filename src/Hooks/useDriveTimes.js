@@ -63,13 +63,35 @@ async function getTravelTime(start, end) {
 
 export default function useDriveTimes() {
   const [times, setTimes] = useState({
-    askerBeito: {},
-    osloBeito: {},
-    tonsbergBeito: {},
+    askerBeito: {
+      duration: "Laster...",
+      distance: "-- km",
+    },
 
-    askerBodal: {},
-    osloBodal: {},
-    tonsbergBodal: {},
+    osloBeito: {
+      duration: "Laster...",
+      distance: "-- km",
+    },
+
+    tonsbergBeito: {
+      duration: "Laster...",
+      distance: "-- km",
+    },
+
+    askerBodal: {
+      duration: "Laster...",
+      distance: "-- km",
+    },
+
+    osloBodal: {
+      duration: "Laster...",
+      distance: "-- km",
+    },
+
+    tonsbergBodal: {
+      duration: "Laster...",
+      distance: "-- km",
+    },
   });
 
   const [lastUpdated, setLastUpdated] =
@@ -88,11 +110,10 @@ export default function useDriveTimes() {
           LOCATIONS.beitostolen
         ),
 
-        tonsbergBeito:
-          await getTravelTime(
-            LOCATIONS.tonsberg,
-            LOCATIONS.beitostolen
-          ),
+        tonsbergBeito: await getTravelTime(
+          LOCATIONS.tonsberg,
+          LOCATIONS.beitostolen
+        ),
 
         askerBodal: await getTravelTime(
           LOCATIONS.asker,
