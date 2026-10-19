@@ -1,6 +1,6 @@
 import useDriveTimes from "../Hooks/useDriveTimes";
 
-function RouteCard({ place, route, mapsUrl }) {
+function RouteCard({ place, route }) {
   return (
     <div className="border rounded-xl p-4">
       <div className="font-semibold mb-2">
@@ -11,18 +11,20 @@ function RouteCard({ place, route, mapsUrl }) {
         🚗 {route?.duration ?? "--"}
       </div>
 
-      <div className="text-slate-600 mb-2">
+      <div className="text-slate-600">
         📏 {route?.distance ?? "--"}
       </div>
+    </div>
+  );
+}
 
-      <a
-        href={mapsUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="text-blue-600 hover:underline text-dated } = useDriveTimes();
+export default function TravelTimesCard() {
+  const { times, lastUpdated } =
+    useDriveTimes();
 
   return (
     <div className="bg-white rounded-3xl p-6 shadow">
+
       <h2 className="font-bold text-2xl mb-6">
         🚗 Reisetider
       </h2>
@@ -39,19 +41,16 @@ function RouteCard({ place, route, mapsUrl }) {
             <RouteCard
               place="Asker"
               route={times.askerBeito}
-              mapsUrl="https://www.google.com/maps/dir/Asker/Beitostølen"
             />
 
             <RouteCard
               place="Oslo"
               route={times.osloBeito}
-              mapsUrl="https://www.google.com/maps/dir/Oslo/Beitostølen"
             />
 
             <RouteCard
               place="Tønsberg"
               route={times.tonsbergBeito}
-              mapsUrl="https://www.google.com/maps/dir/Tønsberg/Beitostølen"
             />
 
           </div>
@@ -67,19 +66,16 @@ function RouteCard({ place, route, mapsUrl }) {
             <RouteCard
               place="Asker"
               route={times.askerBodal}
-              mapsUrl="https://www.google.com/maps/dir/Asker/Bødal"
             />
 
             <RouteCard
               place="Oslo"
               route={times.osloBodal}
-              mapsUrl="https://www.google.com/maps/dir/Oslo/Bødal"
             />
 
             <RouteCard
               place="Tønsberg"
               route={times.tonsbergBodal}
-              mapsUrl="https://www.google.com/maps/dir/Tønsberg/Bødal"
             />
 
           </div>
@@ -90,7 +86,7 @@ function RouteCard({ place, route, mapsUrl }) {
       <div className="text-xs text-gray-500 mt-6">
         Sist oppdatert: {lastUpdated}
       </div>
+
     </div>
   );
 }
-``
