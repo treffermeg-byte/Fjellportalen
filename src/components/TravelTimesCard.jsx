@@ -1,29 +1,29 @@
 import useDriveTimes from "../Hooks/useDriveTimes";
 
-export default function TravelTimesCard() {
-  const { times, lastUpdated } = useDriveTimes();
+function RouteCard({ place, route, mapsUrl }) {
+  return (
+    <div className="border rounded-xl p-4">
+      <div className="font-semibold mb-2">
+        📍 {place}
+      </div>
 
-  function RouteCard({ place, route, mapsUrl }) {
-    return (
-      <div className="border rounded-xl p-4">
-        <div className="font-semibold mb-2">
-          📍 {place}
-        </div>
+      <div className="font-bold text-lg">
+        🚗 {route?.duration ?? "--"}
+      </div>
 
-        <div className="font-bold text-lg">
-          🚗 {route?.duration ?? "--"}
-        </div>
+      <div className="text-slate-600 mb-3">
+        📏 {route?.distance ?? "--"}
+      </div>
 
-        <div className="text-slate-600">
-          📏 {route?.distance ?? "--"}
-        </div>
+      <a
+        href={mapsUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-blue-600 hover:underline textpdated } = useDriveTimes();
 
-        <a
-          href={mapsUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-blue-600 hover:underline text-sm"
-       lassName="font-bold text-2xl mb-6">
+  return (
+    <div className="bg-white rounded-3xl p-6 shadow">
+      <h2 className="font-bold text-2xl mb-6">
         🚗 Reisetider
       </h2>
 
@@ -35,23 +35,25 @@ export default function TravelTimesCard() {
           </h3>
 
           <div className="space-y-3">
+
             <RouteCard
               place="Asker"
               route={times.askerBeito}
-              mapsUrl="https://www.google.com/maps/dir/Asker/Beitost%C3%B8len"
+              mapsUrl="https://www.google.com/maps/dir/Asker/Beitostølen"
             />
 
             <RouteCard
               place="Oslo"
               route={times.osloBeito}
-              mapsUrl="https://www.google.com/maps/dir/Oslo/Beitost%C3%B8len"
+              mapsUrl="https://www.google.com/maps/dir/Oslo/Beitostølen"
             />
 
             <RouteCard
               place="Tønsberg"
               route={times.tonsbergBeito}
-              mapsUrl="https://www.google.com/maps/dir/T%C3%B8nsberg/Beitost%C3%B8len"
+              mapsUrl="https://www.google.com/maps/dir/Tønsberg/Beitostølen"
             />
+
           </div>
         </div>
 
@@ -61,23 +63,25 @@ export default function TravelTimesCard() {
           </h3>
 
           <div className="space-y-3">
+
             <RouteCard
               place="Asker"
               route={times.askerBodal}
-              mapsUrl="https://www.google.com/maps/dir/Asker/B%C3%B8dal"
+              mapsUrl="https://www.google.com/maps/dir/Asker/Bødal"
             />
 
             <RouteCard
               place="Oslo"
               route={times.osloBodal}
-              mapsUrl="https://www.google.com/maps/dir/Oslo/B%C3%B8dal"
+              mapsUrl="https://www.google.com/maps/dir/Oslo/Bødal"
             />
 
             <RouteCard
               place="Tønsberg"
               route={times.tonsbergBodal}
-              mapsUrl="https://www.google.com/maps/dir/T%C3%B8nsberg/B%C3%B8dal"
+              mapsUrl="https://www.google.com/maps/dir/Tønsberg/Bødal"
             />
+
           </div>
         </div>
 
