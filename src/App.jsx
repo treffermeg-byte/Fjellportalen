@@ -8,7 +8,7 @@ import DrivstoffLadingCard from "./components/DrivstoffLadingCard";
 import TravelTimesCard from "./components/TravelTimesCard";
 import CameraSection from "./components/CameraSection";
 import PanoramaCard from "./components/PanoramaCard";
-import LoenVideoCard from "./components/LoenVideoCard";
+
 
 import useWeather from "./Hooks/useWeather";
 import useForecast from "./Hooks/useForecast";
@@ -120,9 +120,6 @@ export default function App() {
           <CameraSection />
         </div>
 
-        <div className="mb-6">
-          <LoenVideoCard />
-        </div>
 
         <div className="mb-6">
           <PanoramaCard />
