@@ -43,13 +43,11 @@ export default function App() {
         </h1>
 
         <p className="text-slate-600 mb-6">
-          Vær, kjøretider, fjelloverganger,
-          heisstatus, langrenn, drivstoff,
-          buss, kameraer og reiseinformasjon
+          Vær, fjelloverganger, heisstatus, langrenn, buss, kameraer og reiseinformasjon
           samlet på ett sted.
         </p>
 
-        <div className="mb-6">
+        <div className="mb-4">
           <HytteklarCard
             beitoWeather={beitoWeather}
             loenWeather={loenWeather}
@@ -68,28 +66,28 @@ export default function App() {
           />
         </div>
 
-        <div className="mb-6">
+        <div className="mb-4">
           <FjellovergangerCard />
         </div>
 
-        <div className="mb-6">
+        <div className="mb-4">
           <HeisStatusCard />
         </div>
 
-        <div className="mb-6">
+        <div className="mb-4">
           <BussCard />
         </div>
 
-        <div className="mb-6">
+        <div className="mb-4">
           <LangrennCard />
         </div>
 
 
-        <div className="mb-6">
+        <div className="mb-4">
           <TravelTimesCard />
         </div>
 
-<div className="mb-6">
+        <div className="mb-4">
   <div
     className="relative rounded-3xl overflow-hidden shadow-xl"
     style={{
@@ -107,7 +105,7 @@ export default function App() {
       </h2>
 
       <p className="text-white/90 mb-6">
-        Informasjonsvideo som viser hvordan vannet
+        Video som viser hvordan vannet
         stenges ved avreise fra hytta.
       </p>
 
@@ -135,7 +133,9 @@ export default function App() {
         <div className="mb-6">
           <BeitoVideoCard />
         </div>
-
+        <p className="text-slate-600 mb-6">
+          Siden er laget av: Øyvind André Mathisen
+        </p>
 
       </div>
     </div>
