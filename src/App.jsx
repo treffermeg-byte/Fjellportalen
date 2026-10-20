@@ -4,7 +4,6 @@ import FjellovergangerCard from "./components/FjellovergangerCard";
 import HeisStatusCard from "./components/HeisStatusCard";
 import BussCard from "./components/BussCard";
 import LangrennCard from "./components/LangrennCard";
-import DrivstoffLadingCard from "./components/DrivstoffLadingCard";
 import TravelTimesCard from "./components/TravelTimesCard";
 import CameraSection from "./components/CameraSection";
 import PanoramaCard from "./components/PanoramaCard";
@@ -85,9 +84,6 @@ export default function App() {
           <LangrennCard />
         </div>
 
-        <div className="mb-6">
-          <DrivstoffLadingCard />
-        </div>
 
         <div className="mb-6">
           <TravelTimesCard />
