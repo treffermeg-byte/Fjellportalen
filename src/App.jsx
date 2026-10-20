@@ -93,27 +93,40 @@ export default function App() {
           <TravelTimesCard />
         </div>
 
-        <div className="mb-6">
-          <div className="bg-white rounded-3xl p-6 shadow">
-            <h2 className="text-2xl font-bold mb-3">
-              💧 Stenging av vann i Bødal
-            </h2>
+<div className="mb-6">
+  <div
+    className="relative rounded-3xl overflow-hidden shadow-xl"
+    style={{
+      backgroundImage: "url('/vann.jpg')",
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+    }}
+  >
+    <div className="absolute inset-0 bg-black/50"></div>
 
-            <p className="text-slate-600 mb-4">
-              Informasjonsvideo som viser hvordan vannet
-              stenges ved avreise fra hytta.
-            </p>
+    <div className="relative p-8 text-white">
 
-            <a
-              href="https://youtu.be/DSvmFjCCIcA"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block bg-blue-600 text-white px-4 py-2 rounded-xl hover:bg-blue-700"
-            >
-              Se video
-            </a>
-          </div>
-        </div>
+      <h2 className="text-3xl font-bold mb-3">
+        💧 Stenging av vann i Bødal
+      </h2>
+
+      <p className="text-white/90 mb-6">
+        Informasjonsvideo som viser hvordan vannet
+        stenges ved avreise fra hytta.
+      </p>
+
+      <a
+        href="https://youtu.be/DSvmFjCCIcA"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-flex items-center px-6 py-3 rounded-2xl bg-blue-600 hover:bg-blue-700 text-white font-semibold transition"
+      >
+        ▶ Se video
+      </a>
+
+    </div>
+  </div>
+</div>
 
         <div className="mb-6">
           <CameraSection />
