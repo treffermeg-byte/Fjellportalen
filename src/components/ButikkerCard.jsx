@@ -8,13 +8,12 @@ function StoreLink({ name, url, icon = "🛒", note }) {
         flex
         items-center
         justify-between
-        rounded-xl
+        rounded-2xl
         bg-black/25
         backdrop-blur-sm
         border
         border-white/20
-        p-3
-        text-white
+        p-4
         transition-all
         duration-300
         hover:bg-black/35
@@ -70,23 +69,23 @@ export default function ButikkerCard() {
               <StoreLink
                 name="Joker Loen"
                 note="🕒 08:00-20:00"
-                url="https://www.google.com/maps/place/Joker+Loen/"
+                url="https://www.google.com/maps/search/?api=1&query=Joker+Loen"
               />
 
               <StoreLink
                 name="Rema 1000 Stryn"
-                url="https://www.google.com/maps/place/REMA+1000+STRYN/"
+                url="https://www.google.com/maps/search/?api=1&query=Rema+1000+Stryn"
               />
 
               <StoreLink
                 name="Kiwi Stryn"
-                url="https://www.google.com/maps/place/KIWI+Stryn/"
+                url="https://www.google.com/maps/search/?api=1&query=Kiwi+Stryn"
               />
 
               <StoreLink
                 name="Isehaug Kafeteria"
                 icon="☕"
-                url="https://www.google.com/maps/place/Isehaug+Kafeteria+AS/"
+                url="https://www.google.com/maps/search/?api=1&query=Isehaug+Kafeteria+Stryn"
               />
 
             </div>
@@ -102,24 +101,24 @@ export default function ButikkerCard() {
 
               <StoreLink
                 name="Spar"
-                url="https://www.google.com/maps/place/SPAR+Beitost%C3%B8len/"
+                url="https://www.google.com/maps/search/?api=1&query=Spar+Beitostølen"
               />
 
               <StoreLink
                 name="Extra"
-                url="https://www.google.com/maps/place/Extra+Beitost%C3%B8len/"
+                url="https://www.google.com/maps/search/?api=1&query=Extra+Beitostølen"
               />
 
               <StoreLink
                 name="Kiwi"
-                url="https://www.google.com/maps/place/KIWI+Beitost%C3%B8len/"
+                url="https://www.google.com/maps/search/?api=1&query=Kiwi+Beitostølen"
               />
 
               <StoreLink
                 name="Vinmonopolet"
                 icon="🍷"
                 note="⚠️ Stengt tirsdager"
-                url="https://www.google.com/maps/place/Vinmonopolet/"
+                url="https://www.google.com/maps/search/?api=1&query=Vinmonopolet+Beitostølen"
               />
 
             </div>
