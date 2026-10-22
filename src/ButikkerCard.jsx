@@ -11,6 +11,7 @@ export default function ButikkerCard() {
       {/* Overlay */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/55 to-black/20" />
 
+      
       <div className="relative z-10 p-6">
         <h2 className="text-2xl font-bold text-white mb-6">
           🛒 Butikker & Mat
