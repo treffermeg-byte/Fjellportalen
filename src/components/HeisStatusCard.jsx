@@ -1,5 +1,5 @@
 import { ExternalLink, RefreshCw } from "lucide-react";
-import useHeisStatus from "../hooks/useHeisStatus";
+import useHeisStatus from "../Hooks/useHeisStatus";
 
 export default function HeisStatusCard() {
   const { status, lastUpdated } = useHeisStatus();
