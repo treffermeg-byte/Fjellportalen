@@ -9,30 +9,31 @@ function StoreLink({ name, url, icon = "🛒", note }) {
         items-center
         justify-between
         rounded-2xl
-        bg-black/25
+        bg-black/20
         backdrop-blur-sm
         border
         border-white/20
         p-4
         transition-all
         duration-300
-        hover:bg-black/35
+        hover:bg-black/30
         hover:border-white/40
+        md:hover:-translate-y-0.5
       "
     >
       <div>
-        <div className="font-semibold">
+        <div className="font-semibold text-white drop-shadow-md">
           {icon} {name}
         </div>
 
         {note && (
-          <div className="text-sm text-amber-200 mt-1">
+          <div className="text-sm text-amber-200 mt-1 drop-shadow-md">
             {note}
           </div>
         )}
       </div>
 
-      <div className="font-medium text-slate-100">
+      <div className="font-medium text-white drop-shadow-md">
         🗺️ Kart
       </div>
     </a>
@@ -52,7 +53,7 @@ export default function ButikkerCard() {
       <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/55 to-black/20" />
 
       <div className="relative z-10 p-6">
-        <h2 className="text-2xl font-bold text-white mb-6">
+        <h2 className="text-2xl font-bold text-white drop-shadow-md mb-6">
           🛒 Butikker & Mat
         </h2>
 
@@ -60,7 +61,7 @@ export default function ButikkerCard() {
 
           {/* Loen / Stryn */}
           <div className="rounded-2xl bg-white/10 backdrop-blur-sm border border-white/20 p-4">
-            <h3 className="font-bold text-xl text-white mb-4">
+            <h3 className="font-bold text-xl text-white drop-shadow-md mb-4">
               🌊 Loen / Stryn
             </h3>
 
@@ -93,7 +94,7 @@ export default function ButikkerCard() {
 
           {/* Beitostølen */}
           <div className="rounded-2xl bg-white/10 backdrop-blur-sm border border-white/20 p-4">
-            <h3 className="font-bold text-xl text-white mb-4">
+            <h3 className="font-bold text-xl text-white drop-shadow-md mb-4">
               🏔️ Beitostølen
             </h3>
 
