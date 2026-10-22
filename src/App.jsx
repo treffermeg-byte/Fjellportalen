@@ -43,8 +43,8 @@ export default function App() {
         </h1>
 
         <p className="text-slate-600 mb-6">
-          Vær, fjelloverganger, heisstatus, langrenn, buss, kameraer og
-          reiseinformasjon samlet på ett sted.
+          Vær, fjelloverganger, heisstatus, langrenn, buss,
+          kameraer og reiseinformasjon samlet på ett sted.
         </p>
 
         <div className="mb-4">
@@ -86,7 +86,10 @@ export default function App() {
           <TravelTimesCard />
         </div>
 
-        <div className="mb-4">
+        {/* Bødal + Beitostølen Info */}
+        <div className="grid lg:grid-cols-2 gap-6 mb-6">
+
+          {/* Vann Bødal */}
           <div
             className="relative rounded-3xl overflow-hidden shadow-xl"
             style={{
@@ -117,6 +120,61 @@ export default function App() {
               </a>
             </div>
           </div>
+
+          {/* Beitostølen Info */}
+          <div
+            className="relative rounded-3xl overflow-hidden shadow-xl"
+            style={{
+              backgroundImage: "url('/Beitoheis.jpg')",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          >
+            <div className="absolute inset-0 bg-black/60"></div>
+
+            <div className="relative p-8 text-white">
+              <h2 className="text-3xl font-bold mb-3">
+                🏔️ Beitostølen Info
+              </h2>
+
+              <p className="text-white/90 mb-6">
+                Informasjon ved ankomst,
+                praktiske tips og avreise.
+              </p>
+
+              <div className="flex flex-wrap gap-3">
+
+                <a
+                  href="/Annkomst Beitostølen.jpg"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-4 py-3 rounded-2xl bg-green-600 hover:bg-green-700 font-semibold transition"
+                >
+                  🏡 Ankomst
+                </a>
+
+                <a
+                  href="/Beitopratisk.jpg"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-4 py-3 rounded-2xl bg-blue-600 hover:bg-blue-700 font-semibold transition"
+                >
+                  ℹ️ Praktisk info
+                </a>
+
+                <a
+                  href="/avreise.jpg"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-4 py-3 rounded-2xl bg-amber-600 hover:bg-amber-700 font-semibold transition"
+                >
+                  👋 Avreise
+                </a>
+
+              </div>
+            </div>
+          </div>
+
         </div>
 
         <div className="mb-6">
