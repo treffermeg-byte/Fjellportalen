@@ -4,14 +4,14 @@ export default function HeisStatusCard() {
   const { status, lastUpdated } = useHeisStatus();
 
   return (
-    <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-4">
+    <div className="bg-white dark:bg-slate-800 text-slate-900 dark:text-white rounded-2xl shadow-lg p-4">
       <div className="flex items-center justify-between mb-4">
-        <h2 className="text-xl font-bold">
+        <h2 className="text-xl font-bold text-slate-900 dark:text-white">
           🚠 Heisstatus
         </h2>
 
         {lastUpdated && (
-          <div className="text-xs text-slate-500">
+          <div className="text-xs text-slate-500 dark:text-slate-300">
             🔄 {lastUpdated}
           </div>
         )}
@@ -28,8 +28,7 @@ export default function HeisStatusCard() {
             backgroundPosition: "center",
           }}
         >
-          {/* Gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/55 to-black/25" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/65 to-black/30" />
 
           <div className="relative z-10 p-5 text-white h-full flex flex-col justify-between">
             <div>
@@ -97,8 +96,7 @@ export default function HeisStatusCard() {
             backgroundPosition: "center",
           }}
         >
-          {/* Gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/55 to-black/25" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/65 to-black/30" />
 
           <div className="relative z-10 p-5 text-white h-full flex flex-col justify-between">
             <div>
@@ -135,7 +133,7 @@ export default function HeisStatusCard() {
 
       </div>
 
-      <div className="mt-4 text-xs text-slate-500">
+      <div className="mt-4 text-xs text-slate-500 dark:text-slate-300">
         🔄 Oppdateres automatisk hvert 5. minutt
         {lastUpdated && ` • Sist oppdatert ${lastUpdated}`}
       </div>
