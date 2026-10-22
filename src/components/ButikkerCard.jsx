@@ -1,3 +1,45 @@
+function StoreLink({ name, url, icon = "🛒", note }) {
+  return (
+    <a
+      href={url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="
+        flex
+        items-center
+        justify-between
+        rounded-xl
+        bg-black/25
+        backdrop-blur-sm
+        border
+        border-white/20
+        p-3
+        text-white
+        transition-all
+        duration-300
+        hover:bg-black/35
+        hover:border-white/40
+      "
+    >
+      <div>
+        <div className="font-semibold">
+          {icon} {name}
+        </div>
+
+        {note && (
+          <div className="text-sm text-amber-200 mt-1">
+            {note}
+          </div>
+        )}
+      </div>
+
+      <div className="font-medium text-slate-100">
+        🗺️ Kart
+      </div>
+    </a>
+  );
+}
+
 export default function ButikkerCard() {
   return (
     <div
@@ -8,10 +50,8 @@ export default function ButikkerCard() {
         backgroundPosition: "center",
       }}
     >
-      {/* Overlay */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/55 to-black/20" />
 
-      
       <div className="relative z-10 p-6">
         <h2 className="text-2xl font-bold text-white mb-6">
           🛒 Butikker & Mat
@@ -27,53 +67,27 @@ export default function ButikkerCard() {
 
             <div className="space-y-3">
 
-              <a
-                href="https://www.google.com/maps/place/Joker+Loen/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block rounded-xl bg-black/30 border border-white/20 p-3 text-white transition-all duration-300 hover:bg-black/40 hover:border-white/40"
-              >
-                <div className="font-semibold">
-                  🛒 Joker Loen
-                </div>
+              <StoreLink
+                name="Joker Loen"
+                note="🕒 08:00-20:00"
+                url="https://www.google.com/maps/place/Joker+Loen/"
+              />
 
-                <div className="text-sm text-slate-200">
-                  🕒 08:00–20:00
-                </div>
-              </a>
+              <StoreLink
+                name="Rema 1000 Stryn"
+                url="https://www.google.com/maps/place/REMA+1000+STRYN/"
+              />
 
-              <a
-                href="https://www.google.com/maps/place/REMA+1000+STRYN/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block rounded-xl bg-black/30 border border-white/20 p-3 text-white transition-all duration-300 hover:bg-black/40 hover:border-white/40"
-              >
-                <div className="font-semibold">
-                  🛒 Rema 1000 Stryn
-                </div>
-              </a>
+              <StoreLink
+                name="Kiwi Stryn"
+                url="https://www.google.com/maps/place/KIWI+Stryn/"
+              />
 
-              <a
-                href="https://www.google.com/maps/place/KIWI+Stryn/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block rounded-xl bg-black/30 border border-white/20 p-3 text-white transition-all duration-300 hover:bg-black/40 hover:border-white/40"
-              >
-                <div className="font-semibold">
-                  🛒 Kiwi Stryn
-                </div>
-              </a>
-
-              <a
-                href="https://www.google.com/maps/place/Isehaug+Kafeteria+AS/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block rounded-xl bg-black/30 border border-white/20 p-3 text-white transition-all duration-300 hover:bg-black/40 hover:border-white/40"
-              >
-                <div className="font-semibold">
-                  ☕ Isehaug Kafeteria
-                </div>
-              </a>
+              <StoreLink
+                name="Isehaug Kafeteria"
+                icon="☕"
+                url="https://www.google.com/maps/place/Isehaug+Kafeteria+AS/"
+              />
 
             </div>
           </div>
@@ -86,53 +100,27 @@ export default function ButikkerCard() {
 
             <div className="space-y-3">
 
-              <a
-                href="https://www.google.com/maps/place/SPAR+Beitost%C3%B8len/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block rounded-xl bg-black/30 border border-white/20 p-3 text-white transition-all duration-300 hover:bg-black/40 hover:border-white/40"
-              >
-                <div className="font-semibold">
-                  🛒 Spar
-                </div>
-              </a>
+              <StoreLink
+                name="Spar"
+                url="https://www.google.com/maps/place/SPAR+Beitost%C3%B8len/"
+              />
 
-              <a
-                href="https://www.google.com/maps/place/Extra+Beitost%C3%B8len/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block rounded-xl bg-black/30 border border-white/20 p-3 text-white transition-all duration-300 hover:bg-black/40 hover:border-white/40"
-              >
-                <div className="font-semibold">
-                  🛒 Extra
-                </div>
-              </a>
+              <StoreLink
+                name="Extra"
+                url="https://www.google.com/maps/place/Extra+Beitost%C3%B8len/"
+              />
 
-              <a
-                href="https://www.google.com/maps/place/KIWI+Beitost%C3%B8len/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block rounded-xl bg-black/30 border border-white/20 p-3 text-white transition-all duration-300 hover:bg-black/40 hover:border-white/40"
-              >
-                <div className="font-semibold">
-                  🛒 Kiwi
-                </div>
-              </a>
+              <StoreLink
+                name="Kiwi"
+                url="https://www.google.com/maps/place/KIWI+Beitost%C3%B8len/"
+              />
 
-              <a
-                href="https://www.google.com/maps/place/Vinmonopolet/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block rounded-xl bg-black/30 border border-amber-400/40 p-3 text-white transition-all duration-300 hover:bg-black/40"
-              >
-                <div className="font-semibold">
-                  🍷 Vinmonopolet
-                </div>
-
-                <div className="text-sm text-amber-200">
-                  ⚠️ Stengt tirsdager
-                </div>
-              </a>
+              <StoreLink
+                name="Vinmonopolet"
+                icon="🍷"
+                note="⚠️ Stengt tirsdager"
+                url="https://www.google.com/maps/place/Vinmonopolet/"
+              />
 
             </div>
           </div>
