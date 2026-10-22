@@ -2,91 +2,113 @@ import useDriveTimes from "../Hooks/useDriveTimes";
 
 function RouteCard({ place, route }) {
   return (
-    <div className="border rounded-xl p-4">
-      <div className="font-semibold mb-2">
+    <div
+      className="
+        rounded-xl
+        bg-black/30
+        backdrop-blur-sm
+        border
+        border-white/20
+        p-3
+        transition-all
+        duration-300
+        hover:border-white/40
+        hover:bg-black/40
+        md:hover:-translate-y-0.5
+        md:hover:shadow-xl
+      "
+    >
+      <div className="font-semibold text-white">
         📍 {place}
       </div>
 
-      <div className="font-bold text-lg">
-        🚗 {route?.duration ?? "--"}
-      </div>
+      <div className="text-white mt-1 flex flex-wrap items-center gap-2">
+        <span className="font-bold text-lg">
+          🚗 {route?.duration ?? "--"}
+        </span>
 
-      <div className="text-slate-600">
-        📏 {route?.distance ?? "--"}
+        <span className="text-slate-200">
+          • 📏 {route?.distance ?? "--"}
+        </span>
       </div>
     </div>
   );
 }
 
 export default function TravelTimesCard() {
-  const { times, lastUpdated } =
-    useDriveTimes();
+  const { times, lastUpdated } = useDriveTimes();
 
   return (
-    <div className="bg-white rounded-3xl p-6 shadow">
+    <div
+      className="relative overflow-hidden rounded-3xl shadow-lg"
+      style={{
+        backgroundImage: "url('/vei.jpg')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
+      {/* Gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/60 to-black/35" />
 
-      <h2 className="font-bold text-2xl mb-6">
-        🚗 Reisetider
-      </h2>
+      <div className="relative z-10 p-6">
+        <h2 className="font-bold text-2xl text-white mb-6">
+          🚗 Reisetider
+        </h2>
 
-      <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid md:grid-cols-2 gap-6">
+          {/* Beitostølen */}
+          <div className="rounded-2xl bg-white/10 backdrop-blur-sm border border-white/20 p-4">
+            <h3 className="font-bold text-xl text-white mb-4">
+              🏔️ Beitostølen
+            </h3>
 
-        <div>
-          <h3 className="font-bold text-lg mb-4">
-            🏔️ Beitostølen
-          </h3>
+            <div className="space-y-3">
+              <RouteCard
+                place="Asker"
+                route={times.askerBeito}
+              />
 
-          <div className="space-y-3">
+              <RouteCard
+                place="Oslo"
+                route={times.osloBeito}
+              />
 
-            <RouteCard
-              place="Asker"
-              route={times.askerBeito}
-            />
+              <RouteCard
+                place="Tønsberg"
+                route={times.tonsbergBeito}
+              />
+            </div>
+          </div>
 
-            <RouteCard
-              place="Oslo"
-              route={times.osloBeito}
-            />
+          {/* Bødal */}
+          <div className="rounded-2xl bg-white/10 backdrop-blur-sm border border-white/20 p-4">
+            <h3 className="font-bold text-xl text-white mb-4">
+              🏞️ Bødal
+            </h3>
 
-            <RouteCard
-              place="Tønsberg"
-              route={times.tonsbergBeito}
-            />
+            <div className="space-y-3">
+              <RouteCard
+                place="Asker"
+                route={times.askerBodal}
+              />
 
+              <RouteCard
+                place="Oslo"
+                route={times.osloBodal}
+              />
+
+              <RouteCard
+                place="Tønsberg"
+                route={times.tonsbergBodal}
+              />
+            </div>
           </div>
         </div>
 
-        <div>
-          <h3 className="font-bold text-lg mb-4">
-            🏞️ Bødal
-          </h3>
-
-          <div className="space-y-3">
-
-            <RouteCard
-              place="Asker"
-              route={times.askerBodal}
-            />
-
-            <RouteCard
-              place="Oslo"
-              route={times.osloBodal}
-            />
-
-            <RouteCard
-              place="Tønsberg"
-              route={times.tonsbergBodal}
-            />
-
-          </div>
+        <div className="text-xs text-slate-200 mt-6">
+          🚗 Sist oppdatert: {lastUpdated}
         </div>
-
       </div>
-
-      <div className="text-xs text-gray-500 mt-6">
-        Sist oppdatert: {lastUpdated}
-      </div>
-
     </div>
   );
 }
