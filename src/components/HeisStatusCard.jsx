@@ -1,4 +1,3 @@
-import { ExternalLink, RefreshCw } from "lucide-react";
 import useHeisStatus from "../Hooks/useHeisStatus";
 
 export default function HeisStatusCard() {
@@ -12,9 +11,8 @@ export default function HeisStatusCard() {
         </h2>
 
         {lastUpdated && (
-          <div className="flex items-center gap-1 text-xs text-slate-500">
-            <RefreshCw size={12} />
-            {lastUpdated}
+          <div className="text-xs text-slate-500">
+            🔄 {lastUpdated}
           </div>
         )}
       </div>
@@ -70,7 +68,7 @@ export default function HeisStatusCard() {
 
           <div className="text-sm space-y-2">
             <div>🎟️ Billetter og åpningstider</div>
-            <div>Se informasjon via knappene under.</div>
+            <div>Bruk knappene under.</div>
           </div>
         </div>
 
@@ -90,8 +88,7 @@ export default function HeisStatusCard() {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 rounded-lg bg-sky-600 px-3 py-2 text-sm text-white hover:bg-sky-700"
           >
-            🎟️ Loen
-            <ExternalLink size={14} />
+            🎟️ Loen ↗
           </a>
 
           <a
@@ -100,8 +97,7 @@ export default function HeisStatusCard() {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 rounded-lg bg-sky-600 px-3 py-2 text-sm text-white hover:bg-sky-700"
           >
-            🎟️ Beitostølen
-            <ExternalLink size={14} />
+            🎟️ Beitostølen ↗
           </a>
 
           <a
@@ -110,8 +106,7 @@ export default function HeisStatusCard() {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 rounded-lg bg-emerald-600 px-3 py-2 text-sm text-white hover:bg-emerald-700"
           >
-            🕒 Åpningstider
-            <ExternalLink size={14} />
+            🕒 Åpningstider ↗
           </a>
 
         </div>
