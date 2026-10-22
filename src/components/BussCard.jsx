@@ -17,8 +17,7 @@ export default function BussCard() {
         </h2>
 
         <p className="text-slate-100 text-sm mb-4">
-          Planlegg buss- og kollektivreiser til Beitostølen, Stryn og andre
-          destinasjoner via Entur.
+          Planlegg buss til Beitostølen eller Stryn via Entur.
         </p>
 
         <a
