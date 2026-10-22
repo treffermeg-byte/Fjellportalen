@@ -28,7 +28,7 @@ export default function useHeisStatus() {
           })
         );
       } catch (error) {
-        console.error("Kunne ikke hente heisstatus", error);
+        console.error(error);
       }
     };
 
