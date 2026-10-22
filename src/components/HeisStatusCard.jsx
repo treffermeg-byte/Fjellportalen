@@ -21,6 +21,7 @@ export default function HeisStatusCard() {
 
       <div className="grid gap-4 lg:grid-cols-2">
 
+        {/* Beitostølen */}
         <div className="rounded-xl border border-slate-200 dark:border-slate-700 p-4">
           <div className="flex items-center justify-between mb-3">
             <h3 className="font-bold">
@@ -61,24 +62,21 @@ export default function HeisStatusCard() {
           </div>
         </div>
 
+        {/* Loen */}
         <div className="rounded-xl border border-slate-200 dark:border-slate-700 p-4">
           <h3 className="font-bold mb-3">
             🏞️ Loen Skylift
           </h3>
 
           <div className="text-sm space-y-2">
-            <div>
-              🎟️ Billetter og åpningstider
-            </div>
-
-            <div>
-              Se informasjon via knappene under.
-            </div>
+            <div>🎟️ Billetter og åpningstider</div>
+            <div>Se informasjon via knappene under.</div>
           </div>
         </div>
 
       </div>
 
+      {/* Nyttige lenker */}
       <div className="mt-5 border-t border-slate-200 dark:border-slate-700 pt-4">
         <h3 className="font-semibold mb-3">
           🎿 Nyttige lenker
