@@ -8,7 +8,7 @@ import TravelTimesCard from "./components/TravelTimesCard";
 import CameraSection from "./components/CameraSection";
 import PanoramaCard from "./components/PanoramaCard";
 import BeitoVideoCard from "./components/BeitoVideoCard";
-
+import ButikkerCard from "./components/ButikkerCard";
 
 import useWeather from "./Hooks/useWeather";
 import useForecast from "./Hooks/useForecast";
@@ -43,8 +43,8 @@ export default function App() {
         </h1>
 
         <p className="text-slate-600 mb-6">
-          Vær, fjelloverganger, heisstatus, langrenn, buss, kameraer og reiseinformasjon
-          samlet på ett sted.
+          Vær, fjelloverganger, heisstatus, langrenn, buss, kameraer og
+          reiseinformasjon samlet på ett sted.
         </p>
 
         <div className="mb-4">
@@ -82,45 +82,42 @@ export default function App() {
           <LangrennCard />
         </div>
 
-
         <div className="mb-4">
           <TravelTimesCard />
         </div>
 
         <div className="mb-4">
-  <div
-    className="relative rounded-3xl overflow-hidden shadow-xl"
-    style={{
-      backgroundImage: "url('/vann.jpg')",
-      backgroundSize: "cover",
-      backgroundPosition: "center",
-    }}
-  >
-    <div className="absolute inset-0 bg-black/50"></div>
+          <div
+            className="relative rounded-3xl overflow-hidden shadow-xl"
+            style={{
+              backgroundImage: "url('/vann.jpg')",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          >
+            <div className="absolute inset-0 bg-black/50"></div>
 
-    <div className="relative p-8 text-white">
+            <div className="relative p-8 text-white">
+              <h2 className="text-3xl font-bold mb-3">
+                💧 Stenging av vann i Bødal
+              </h2>
 
-      <h2 className="text-3xl font-bold mb-3">
-        💧 Stenging av vann i Bødal
-      </h2>
+              <p className="text-white/90 mb-6">
+                Video som viser hvordan vannet
+                stenges ved avreise fra hytta.
+              </p>
 
-      <p className="text-white/90 mb-6">
-        Video som viser hvordan vannet
-        stenges ved avreise fra hytta.
-      </p>
-
-      <a
-        href="https://youtu.be/DSvmFjCCIcA"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="inline-flex items-center px-6 py-3 rounded-2xl bg-blue-600 hover:bg-blue-700 text-white font-semibold transition"
-      >
-        ▶ Se video
-      </a>
-
-    </div>
-  </div>
-</div>
+              <a
+                href="https://youtu.be/DSvmFjCCIcA"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center px-6 py-3 rounded-2xl bg-blue-600 hover:bg-blue-700 text-white font-semibold transition"
+              >
+                ▶ Se video
+              </a>
+            </div>
+          </div>
+        </div>
 
         <div className="mb-6">
           <CameraSection />
@@ -129,10 +126,15 @@ export default function App() {
         <div className="mb-6">
           <PanoramaCard />
         </div>
-        
+
         <div className="mb-6">
           <BeitoVideoCard />
         </div>
+
+        <div className="mb-6">
+          <ButikkerCard />
+        </div>
+
         <p className="text-slate-600 mb-6">
           Siden er laget av: Øyvind André Mathisen
         </p>
