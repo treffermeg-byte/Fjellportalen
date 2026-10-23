@@ -10,14 +10,14 @@ export default function FjellturerCard() {
 
   return (
     <div
-      className="rounded-2xl p-5 shadow-md text-white"
+      className="rounded-2xl overflow-hidden shadow-md text-white"
       style={{
-        backgroundImage: "url('/Beitovær.jpg')",
+        backgroundImage: "url('/Sko.jpg')",
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
     >
-      <div className="rounded-xl bg-black/50 p-4">
+      <div className="bg-black/50 p-5">
         <h2 className="mb-4 text-xl font-bold">
           🥾 Fjellturer ved Beitostølen
         </h2>
