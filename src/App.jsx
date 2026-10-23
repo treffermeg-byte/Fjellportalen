@@ -199,9 +199,6 @@ langrenn, buss og kameraer samlet på ett sted.
   <SteaksBonesCard />
 </div>
 
-<p className="text-slate-600 mb-6">
-  Siden er laget av: Øyvind André Mathisen
-</p>
 
         
         <p className="text-slate-600 mb-6">
