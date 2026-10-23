@@ -4,6 +4,7 @@ export default function useWeather(lat, lon) {
   const [weather, setWeather] = useState({
     temp: "--",
     wind: "--",
+    symbolCode: null,
   });
 
   useEffect(() => {
@@ -14,9 +15,7 @@ export default function useWeather(lat, lon) {
         );
 
         if (!response.ok) {
-          throw new Error(
-            `HTTP-feil: ${response.status}`
-          );
+          throw new Error(`HTTP-feil: ${response.status}`);
         }
 
         const data = await response.json();
@@ -24,13 +23,14 @@ export default function useWeather(lat, lon) {
         const current =
           data.properties.timeseries[0].data.instant.details;
 
+        const symbolCode =
+          data.properties.timeseries[0].data.next_1_hours?.summary
+            ?.symbol_code || null;
+
         setWeather({
-          temp: Math.round(
-            current.air_temperature
-          ),
-          wind: Math.round(
-            current.wind_speed
-          ),
+          temp: Math.round(current.air_temperature),
+          wind: Math.round(current.wind_speed),
+          symbolCode,
         });
       } catch (error) {
         console.error(
@@ -41,6 +41,7 @@ export default function useWeather(lat, lon) {
         setWeather({
           temp: "--",
           wind: "--",
+          symbolCode: null,
         });
       }
     }
