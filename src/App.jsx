@@ -9,6 +9,7 @@ import CameraSection from "./components/CameraSection";
 import PanoramaCard from "./components/PanoramaCard";
 import BeitoVideoCard from "./components/BeitoVideoCard";
 import ButikkerCard from "./components/ButikkerCard";
+import SteaksBonesCard from "./components/SteaksBonesCard";
 
 import useWeather from "./Hooks/useWeather";
 import useForecast from "./Hooks/useForecast";
@@ -194,6 +195,15 @@ langrenn, buss og kameraer samlet på ett sted.
           <ButikkerCard />
         </div>
 
+<div className="mb-6">
+  <SteaksBonesCard />
+</div>
+
+<p className="text-slate-600 mb-6">
+  Siden er laget av: Øyvind André Mathisen
+</p>
+
+        
         <p className="text-slate-600 mb-6">
           Siden er laget av: Øyvind André Mathisen
         </p>
