@@ -5,7 +5,6 @@ import HeisStatusCard from "./components/HeisStatusCard";
 import BussCard from "./components/BussCard";
 import LangrennCard from "./components/LangrennCard";
 import FjellturerCard from "./components/FjellturerCard";
-import TravelTimesCard from "./components/TravelTimesCard";
 import CameraSection from "./components/CameraSection";
 import PanoramaCard from "./components/PanoramaCard";
 import BeitoVideoCard from "./components/BeitoVideoCard";
@@ -44,8 +43,8 @@ export default function App() {
         </h1>
 
         <p className="text-slate-600 mb-6">
-          Vær, fjelloverganger, heisstatus, langrenn, buss,
-          kameraer og reiseinformasjon samlet på ett sted.
+Vær, fjelloverganger, heisstatus, fjellturer,
+langrenn, buss og kameraer samlet på ett sted.
         </p>
 
         <div className="mb-4">
@@ -79,15 +78,14 @@ export default function App() {
           <BussCard />
         </div>
 
-        <div className="mb-4">
-          <LangrennCard />
-        </div>
+<div className="mb-4">
+  <LangrennCard />
+</div>
+
+<div className="mb-4">
+  <FjellturerCard />
+</div>
         
-<FjellturerCard />
-        
-        <div className="mb-4">
-          <TravelTimesCard />
-        </div>
 
         {/* Bødal + Beitostølen Info */}
         <div className="grid lg:grid-cols-2 gap-6 mb-6">
