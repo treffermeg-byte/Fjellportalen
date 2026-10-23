@@ -1,6 +1,20 @@
 import { useEffect, useState } from "react";
 import useSunTimes from "../Hooks/useSunTimes";
 
+function getWeatherEmoji(symbolCode) {
+  if (!symbolCode) return "❔";
+
+  if (symbolCode.includes("clearsky")) return "☀️";
+  if (symbolCode.includes("fair")) return "🌤️";
+  if (symbolCode.includes("partlycloudy")) return "⛅";
+  if (symbolCode.includes("cloudy")) return "☁️";
+  if (symbolCode.includes("rain")) return "🌧️";
+  if (symbolCode.includes("snow")) return "❄️";
+  if (symbolCode.includes("fog")) return "🌫️";
+
+  return "🌤️";
+}
+
 export default function HytteklarCard({
   beitoWeather,
   loenWeather,
@@ -31,16 +45,12 @@ export default function HytteklarCard({
         setLiftStatus({
           resortOpen:
             data?._source?.resort_open,
-
           liftsOpen:
             data?._source?.lifts?.open ?? 0,
-
           liftsTotal:
             data?._source?.lifts?.count ?? 0,
-
           slopesOpen:
             data?._source?.slopes?.open ?? 0,
-
           slopesTotal:
             data?._source?.slopes?.count ?? 0,
         });
@@ -62,6 +72,8 @@ export default function HytteklarCard({
 
   return (
     <div className="grid lg:grid-cols-2 gap-6">
+
+      {/* BEITOSTØLEN */}
 
       <div className="bg-gradient-to-r from-blue-600 to-indigo-700 text-white rounded-3xl p-6 shadow">
 
@@ -90,6 +102,18 @@ export default function HytteklarCard({
         </div>
 
         <div className="grid grid-cols-2 gap-3">
+
+          <div className="bg-white/10 rounded-2xl p-3">
+            <div className="text-xs opacity-80">
+              🌤️ Vær
+            </div>
+
+            <div className="text-3xl">
+              {getWeatherEmoji(
+                beitoWeather?.symbolCode
+              )}
+            </div>
+          </div>
 
           <div className="bg-white/10 rounded-2xl p-3">
             <div className="text-xs opacity-80">
@@ -133,7 +157,7 @@ export default function HytteklarCard({
             </div>
           </div>
 
-          <div className="bg-white/10 rounded-2xl p-3 col-span-2">
+          <div className="bg-white/10 rounded-2xl p-3">
             <div className="text-xs opacity-80">
               ⛷️ Nedfarter åpne
             </div>
@@ -148,6 +172,8 @@ export default function HytteklarCard({
         </div>
 
       </div>
+
+      {/* LOEN */}
 
       <div className="bg-gradient-to-r from-emerald-600 to-teal-700 text-white rounded-3xl p-6 shadow">
 
@@ -176,6 +202,18 @@ export default function HytteklarCard({
         </div>
 
         <div className="grid grid-cols-2 gap-3">
+
+          <div className="bg-white/10 rounded-2xl p-3">
+            <div className="text-xs opacity-80">
+              🌤️ Vær
+            </div>
+
+            <div className="text-3xl">
+              {getWeatherEmoji(
+                loenWeather?.symbolCode
+              )}
+            </div>
+          </div>
 
           <div className="bg-white/10 rounded-2xl p-3">
             <div className="text-xs opacity-80">
@@ -217,9 +255,9 @@ export default function HytteklarCard({
             </div>
           </div>
 
-          <div className="bg-white/10 rounded-2xl p-3 col-span-2">
+          <div className="bg-white/10 rounded-2xl p-3">
             <div className="text-xs opacity-80">
-              🚡 Skylift siste retur
+              🕒 Siste retur
             </div>
 
             <div className="text-xl font-bold">
@@ -234,4 +272,3 @@ export default function HytteklarCard({
     </div>
   );
 }
-``
