@@ -47,4 +47,20 @@ export default function SteaksBonesCard() {
           <a
             href="https://www.google.com/maps/place/Huset-Steaks+%26+Bones/@61.2489107,8.901172,637m/data=!3m2!1e3!4b1!4m6!3m5!1s0x4615451e44222011:0xe515fab798b7401d!8m2!3d61.2489107!4d8.9037523!16s%2Fg%2F11bzvzv9ys?entry=ttu&g_ep=EgoyMDI2MTAxOS4wIKXMDSoASAFQAw%3D%3D"
             target="_blank"
-            rel="noopener noreferrer
+            rel="noopener noreferrer"
+            className="px-4 py-3 rounded-2xl bg-blue-700 hover:bg-blue-800 font-semibold transition"
+          >
+            🗺️ Kart
+          </a>
+
+          <a
+            href="tel:90940500"
+            className="px-4 py-3 rounded-2xl bg-slate-700 hover:bg-slate-800 font-semibold transition"
+          >
+            📞 909 40 500
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+}
