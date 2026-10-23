@@ -1,13 +1,13 @@
 export default function CameraSection() {
   return (
-    <div className="bg-white rounded-3xl p-6 shadow">
+    <div className="bg-slate-200 rounded-3xl p-6 shadow">
       <h2 className="font-bold text-2xl mb-6">
         📸 Kameraer
       </h2>
 
       <div className="grid md:grid-cols-2 gap-6">
 
-        <div className="border rounded-2xl overflow-hidden">
+        <div className="border border-slate-500 rounded-2xl overflow-hidden bg-slate-100">
           <img
             src="https://beito.com/bilde/bilde.jpg"
             alt="Beitostølen Sentrum"
@@ -18,7 +18,7 @@ export default function CameraSection() {
           </div>
         </div>
 
-        <div className="border rounded-2xl overflow-hidden">
+        <div className="border border-slate-500 rounded-2xl overflow-hidden bg-slate-100">
           <img
             src="https://beito.com/bilde/uppload/raudalenalpin.jpg"
             alt="Slettefjell"
@@ -29,7 +29,7 @@ export default function CameraSection() {
           </div>
         </div>
 
-        <div className="border rounded-2xl overflow-hidden">
+        <div className="border border-slate-500 rounded-2xl overflow-hidden bg-slate-100">
           <img
             src="https://kamera.atlas.vegvesen.no/api/images/3000012_1"
             alt="Valdresflye"
@@ -40,7 +40,7 @@ export default function CameraSection() {
           </div>
         </div>
 
-        <div className="border rounded-2xl overflow-hidden">
+        <div className="border border-slate-500 rounded-2xl overflow-hidden bg-slate-100">
           <img
             src="https://kamera.atlas.vegvesen.no/api/images/3000010_1"
             alt="Fosnes"
@@ -51,7 +51,7 @@ export default function CameraSection() {
           </div>
         </div>
 
-        <div className="border rounded-2xl overflow-hidden">
+        <div className="border border-slate-500 rounded-2xl overflow-hidden bg-slate-100">
           <img
             src="https://kamera.atlas.vegvesen.no/api/images/3000864_1"
             alt="Ospeli bru"
@@ -62,7 +62,7 @@ export default function CameraSection() {
           </div>
         </div>
 
-        <div className="border rounded-2xl overflow-hidden">
+        <div className="border border-slate-500 rounded-2xl overflow-hidden bg-slate-100">
           <img
             src="https://kamera.atlas.vegvesen.no/api/images/1429008_1"
             alt="Kvitenova"
